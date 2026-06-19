@@ -11,7 +11,7 @@ Previously PM at Meituan (Healthcare). MSc Tsinghua (Computational Chemistry), B
 
 | # | Slide | Section | Type |
 |---|-------|---------|------|
-| 1 | Title — "My AI Journey" | Introduction | Dark (blue) |
+| 1 | Title — "From Predicting a Single Number to Agentic Coding" | Introduction | Hero (photo bg) |
 | 2 | About Me | Introduction | Light |
 | 3 | Six Years of Building With AI (timeline) | Introduction | Light |
 | 4 | Era 1 Section Opener — "The Numbers Game" | Era 1 | Tinted (blue) |
@@ -131,6 +131,7 @@ Run with `npx serve -l 3080 -s .` or use the `.claude/launch.json` config:
 
 | File | Slide | Content |
 |------|-------|---------|
+| `bg-hero.jpg` | #1 | Layered mountain ridges at dusk (Unsplash, by [photographer] Salzburg, Austria) |
 | `fig_scheme2.jpg` | #5 | CO₂ reduction reaction scheme |
 | `fig_feature_curve_clean.jpg` | #8 | Feature count vs model accuracy |
 | `fig_feature_importance.jpg` | #8 | Feature importance ranking |
@@ -154,9 +155,12 @@ Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minima
 | 2026-06-19 | Desaturated all colors (低饱和) | Blue #2C3E6B and copper #B0603A were too harsh on the eyes |
 | 2026-06-19 | Added dark slide variants for section bookends | Title, Era 3 opener, Lessons, Thank You use dark backgrounds for rhythm |
 | 2026-06-19 | Image onerror fallbacks | Graceful degradation when images aren't loaded |
+| 2026-06-19 | Title slide → hero layout with photo bg | Reference site uses full-bleed cover image; layered mountain ridges evoke "evolution" metaphor; bottom-left text, 68px serif title |
+| 2026-06-19 | Title changed to "From Predicting a Single Number to Agentic Coding" | User's chosen title; subtitle "The Evolution of AI, From My Perspective" |
+| 2026-06-19 | Presentation date set to June 26, 2026 | User-specified date |
 
 ## Next Steps
-- Per-slide review and refinement (user wants to go one slide at a time)
+- Per-slide review and refinement (user wants to go one slide at a time, starting from slide 2)
 - Era 2 has only 3 slides (11-13) — may need expansion
 - Some image placeholders could be replaced with actual screenshots
 - Backend screenshots (`khora backend*.png`, `sneaker gan.png`) exist but aren't used yet

@@ -218,9 +218,30 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 #keys-hint { position: fixed; bottom: 28px; right: 28px; font-size: 11px; color: var(--text-muted); z-index: 100; display: flex; gap: 4px; align-items: center; }
 #keys-hint kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--border); border-radius: 3px; font-size: 10px; background: var(--surface); }
 
+/* Hero slide */
+.slide.hero-slide {
+  background: linear-gradient(to bottom, rgba(28,30,38,0.55) 0%, rgba(28,30,38,0.72) 50%, rgba(28,30,38,0.88) 100%), url('bg-hero.jpg') center/cover no-repeat;
+  justify-content: flex-end; padding-bottom: 100px; text-align: left;
+}
+.slide.hero-slide .hero-title {
+  font-family: var(--serif); font-size: 68px; font-weight: 400;
+  line-height: 1.12; letter-spacing: -0.025em; color: white; max-width: 880px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+}
+.slide.hero-slide .hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 20px; letter-spacing: 0.06em;
+}
+.slide.hero-slide .hero-divider {
+  width: 56px; height: 2px; background: rgba(255,255,255,0.25); margin: 24px 0;
+}
+.slide.hero-slide .hero-meta {
+  font-size: 13px; color: rgba(255,255,255,0.4);
+}
+
 @media (max-width: 1200px) {
   .slide { padding: 40px 56px 48px; }
   h1.title-xl { font-size: 44px; }
+  .slide.hero-slide .hero-title { font-size: 42px; }
   .stat-row { grid-template-columns: repeat(2,1fr); }
   .timeline-row, .two-col { grid-template-columns: 1fr; gap: 20px; }
   .takeaway-grid { grid-template-columns: 1fr; }
@@ -242,12 +263,11 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div id="deck">
 
 <!-- 1. TITLE -->
-<div class="slide dark-slide centered" data-section="Introduction">
-  <div class="section-label anim d1">June 2026 · Internal Presentation</div>
-  <h1 class="title-xl anim d2">My AI Journey</h1>
-  <p class="subtitle anim d3" style="font-family:var(--serif);font-size:21px;font-style:italic;color:rgba(255,255,255,0.65);">From Predicting a Number to Working Alongside Agents</p>
-  <div class="divider anim d4" style="margin:24px auto;"></div>
-  <p class="anim d5" style="color:rgba(255,255,255,0.5);font-size:14px;">Tony Zhang · Product Manager, Edge Mobile</p>
+<div class="slide dark-slide hero-slide" data-section="Introduction">
+  <h1 class="hero-title anim d1">From Predicting a Single Number<br>to Agentic Coding</h1>
+  <div class="hero-divider anim d2"></div>
+  <p class="hero-sub anim d3">THE EVOLUTION OF AI, FROM MY PERSPECTIVE</p>
+  <p class="hero-meta anim d4">Tony Zhang · June 26, 2026</p>
 </div>
 
 <!-- 2. ABOUT ME -->
