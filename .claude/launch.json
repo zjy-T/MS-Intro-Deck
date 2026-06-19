@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "deck",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3080", "-s", "/Users/tonyzhang/Desktop/Presentation Deck"],
+      "port": 3080
+    }
+  ]
+}

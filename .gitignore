@@ -1,0 +1,34 @@
+.DS_Store
+node_modules/
+
+# Large source files (not needed for the deck)
+*.pptx
+*.pdf
+deck.html
+AI Skin Analysis Build Flow.jam
+API:Usage payments/
+
+# Unused research paper scans
+paper_page-*.jpg
+
+# Unused figure variants (only *_clean.jpg used)
+fig_algo_comparison.jpg
+fig_algo_scatter.jpg
+fig_cu_model.jpg
+fig_cu_model_clean.jpg
+fig_feature_curve.jpg
+fig_feature_selection.jpg
+fig_heatmap.jpg
+fig_heatmap_4a.jpg
+fig_heatmap_only.jpg
+
+# SVG duplicate (PNG version used)
+khora-ecommerce-flow.svg
+
+# Unused screenshots
+screenshots/sneaker gan.png
+screenshots/khora collections.png
+screenshots/khora backend*.png
+
+# Meituan loading screen (not used)
+meituan skin analysis/loading.jpg
