@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My AI Journey — Tony Zhang</title>
+<title>From Predicting a Single Number to Agentic Coding — Tony Zhang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -200,6 +200,27 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .timeline-card .era-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
 .timeline-card .era-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
+/* Vertical timeline */
+.v-timeline { position: relative; padding-left: 36px; margin-top: 24px; }
+.v-timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 18px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-item::before { content: ''; position: absolute; left: -33px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--copper); z-index: 1; }
+.slide.active .tl-item { opacity: 1; transform: translateY(0); }
+.slide.active .tl-item:nth-child(1) { transition-delay: 0.3s; }
+.slide.active .tl-item:nth-child(2) { transition-delay: 0.6s; }
+.slide.active .tl-item:nth-child(3) { transition-delay: 0.9s; }
+.slide.active .tl-item:nth-child(4) { transition-delay: 1.2s; }
+.slide.active .tl-item:nth-child(5) { transition-delay: 1.5s; }
+.slide.active .tl-item:nth-child(6) { transition-delay: 1.8s; }
+.slide.active .tl-item:nth-child(7) { transition-delay: 2.1s; }
+.tl-item .tl-year { font-family: var(--serif); font-size: 22px; color: var(--text); line-height: 1; margin-bottom: 4px; }
+.tl-item .tl-title { font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.tl-item .tl-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-top: 3px; }
+.tl-images { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
+.tl-images .img-frame { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.tl-images .img-frame img { display: block; height: 200px; width: auto; border-radius: 7px; }
+
 /* Animations */
 .slide .anim { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
 .slide.active .anim { opacity: 1; transform: translateY(0); }
@@ -220,22 +241,23 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 /* Hero slide */
 .slide.hero-slide {
-  background: linear-gradient(to bottom, rgba(28,30,38,0.55) 0%, rgba(28,30,38,0.72) 50%, rgba(28,30,38,0.88) 100%), url('bg-hero.jpg') center/cover no-repeat;
-  justify-content: flex-end; padding-bottom: 100px; text-align: left;
+  background: linear-gradient(to right, rgba(6,6,10,0.85) 0%, rgba(6,6,10,0.6) 35%, rgba(6,6,10,0.2) 65%, rgba(6,6,10,0.05) 100%), url('bg-hiker.jpg') center center/cover no-repeat;
+  background-color: #06060A;
+  justify-content: flex-start; padding-top: 120px; text-align: left;
 }
 .slide.hero-slide .hero-title {
   font-family: var(--serif); font-size: 68px; font-weight: 400;
-  line-height: 1.12; letter-spacing: -0.025em; color: white; max-width: 880px;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  line-height: 1.12; letter-spacing: -0.025em; color: white; max-width: 820px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.4);
 }
 .slide.hero-slide .hero-sub {
-  font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 20px; letter-spacing: 0.06em;
+  font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.75); margin-top: 20px; letter-spacing: 0.08em;
 }
 .slide.hero-slide .hero-divider {
-  width: 56px; height: 2px; background: rgba(255,255,255,0.25); margin: 24px 0;
+  width: 56px; height: 2px; background: rgba(255,255,255,0.3); margin: 24px 0;
 }
 .slide.hero-slide .hero-meta {
-  font-size: 13px; color: rgba(255,255,255,0.4);
+  font-size: 14px; color: rgba(255,255,255,0.45);
 }
 
 @media (max-width: 1200px) {
@@ -255,7 +277,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div id="toc"></div>
 <div id="nav">
   <button id="prev-btn" onclick="go(-1)">←</button>
-  <span class="counter" id="counter">01 / 23</span>
+  <span class="counter" id="counter">01 / 25</span>
   <button id="next-btn" onclick="go(1)">→</button>
 </div>
 <div id="keys-hint"><kbd>←</kbd> <kbd>→</kbd> navigate</div>
@@ -272,23 +294,51 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 <!-- 2. ABOUT ME -->
 <div class="slide top" data-section="Introduction">
-  <div class="section-label anim d1">§ 0 · About Me</div>
-  <h2 class="section-title anim d2">Tony Zhang</h2>
-  <div class="two-col wide-left anim d3" style="margin-top:12px;">
-    <div>
-      <ul class="bullet-list" style="margin-bottom:16px;">
-        <li><strong>2002</strong> — Immigrated to Canada</li>
-        <li><strong>2018</strong> — BSc. UBC — Chemical Engineering</li>
-        <li><strong>2021</strong> — MSc. Tsinghua University — Computational Chemistry</li>
-        <li><strong>2021–2025</strong> — Product Manager, Healthcare @ Meituan</li>
-        <li><strong>2026–Now</strong> — Product Manager, Edge Mobile @ Microsoft</li>
-      </ul>
-      <div class="callout" style="margin-top:0;">A product manager building with AI across <em>three distinct eras</em> — from research tools to consumer products to autonomous agents.</div>
+  <h1 class="title-lg anim d1">Who Am I?</h1>
+  <p class="anim d2" style="font-size:19px;font-weight:500;color:var(--text-secondary);margin-top:-8px;margin-bottom:4px;">Tony Zhang</p>
+  <div class="v-timeline">
+    <div class="tl-item">
+      <div class="tl-year">2002</div>
+      <div class="tl-title">Immigrated to Canada</div>
+      <div class="tl-desc">Moved from Beijing with my parents at the age of 8.</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      <div style="background:var(--blue-bg);border-radius:10px;padding:22px;text-align:center;"><div style="font-family:var(--serif);font-size:36px;color:var(--blue);">6</div><div style="font-size:13px;color:var(--text-secondary);">Years building with AI</div></div>
-      <div style="background:var(--copper-bg);border-radius:10px;padding:22px;text-align:center;"><div style="font-family:var(--serif);font-size:36px;color:var(--copper);">3</div><div style="font-size:13px;color:var(--text-secondary);">Distinct eras of AI work</div></div>
-      <div style="background:var(--era2-bg);border-radius:10px;padding:22px;text-align:center;"><div style="font-family:var(--serif);font-size:36px;color:var(--era2);">2</div><div style="font-size:13px;color:var(--text-secondary);">Countries worked across</div></div>
+    <div class="tl-item">
+      <div class="tl-year">2014</div>
+      <div class="tl-title">First Internship — Syncrude R&D</div>
+      <div class="tl-desc">Taught me I wasn't interested in oil & gas, but had a genuine interest in research.</div>
+      <div class="tl-images">
+        <div class="img-frame"><img src="slide 2/2014-1.jpg" alt="Syncrude R&D team"></div>
+        <div class="img-frame"><img src="slide 2/2014-2.jpg" alt="Syncrude office"></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2018</div>
+      <div class="tl-title">BASc. Chemical & Biological Engineering — UBC</div>
+      <div class="tl-desc">Graduated and moved back to China to pursue grad school at Tsinghua University.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2019–2020</div>
+      <div class="tl-title">Covid Pivot</div>
+      <div class="tl-desc">Stuck in Canada during the height of Covid, unable to return to campus. Transitioned my project from experimental to computational. Self-taught coding and ML basics from online courses.</div>
+      <div class="tl-images">
+        <div class="img-frame"><img src="slide 2/2020-1.png" alt="Python for Everybody — Coursera"></div>
+        <div class="img-frame"><img src="slide 2/2020-2.png" alt="Applied Data Science — Coursera"></div>
+        <div class="img-frame"><img src="slide 2/2020-3.png" alt="Udacity certificate"></div>
+        <div class="img-frame"><img src="slide 2/2020-4.png" alt="Udacity certificate"></div>
+        <div class="img-frame"><img src="slide 2/2020-5.png" alt="Udacity certificate"></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2021</div>
+      <div class="tl-title">MSc. Computational Chemistry — Tsinghua University</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2021–2025</div>
+      <div class="tl-title">Product Manager — Meituan, Healthcare Division</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2026–Now</div>
+      <div class="tl-title">Product Manager — Microsoft, Edge Mobile</div>
     </div>
   </div>
 </div>

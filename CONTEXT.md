@@ -7,33 +7,18 @@ A 45-minute internal presentation for product managers and engineers at Microsof
 **Tony Zhang** — Product Manager, Edge Mobile @ Microsoft.
 Previously PM at Meituan (Healthcare). MSc Tsinghua (Computational Chemistry), BSc UBC (Chemical Engineering).
 
-## Presentation Structure (23 slides)
+## Presentation Structure (25 slides planned)
 
-| # | Slide | Section | Type |
-|---|-------|---------|------|
-| 1 | Title — "From Predicting a Single Number to Agentic Coding" | Introduction | Hero (photo bg) |
-| 2 | About Me | Introduction | Light |
-| 3 | Six Years of Building With AI (timeline) | Introduction | Light |
-| 4 | Era 1 Section Opener — "The Numbers Game" | Era 1 | Tinted (blue) |
-| 5 | The Science Problem (CO₂RR) | Era 1 | Light |
-| 6 | Bottlenecking on Computation | Era 1 | Light |
-| 7 | The AI-for-Science Approach (funnel) | Era 1 | Light |
-| 8 | Optimizing Through Feature Reduction | Era 1 | Light |
-| 9 | Results — Highly Accelerated & Accurate | Era 1 | Light |
-| 10 | Era 1 Takeaway | Era 1 | Light (centered) |
-| 11 | Era 2 Section Opener — "Teaching Machines to See" | Era 2 | Tinted (green) |
-| 12 | Cosmetic Medicine at Meituan | Era 2 | Light |
-| 13 | AI Skin Analysis (3-step flow) | Era 2 | Light |
-| 14 | Era 3 Section Opener — "The Agentic Era" | Era 3 | Dark (copper) |
-| 15 | 2025 Completely Changed the Game (comparison table) | Era 3 | Light |
-| 16 | Showcase 1 — Edge Mobile Reimagined | Era 3 | Light |
-| 17 | The Iterative Build Flow | Era 3 | Light |
-| 18 | Showcase 2 — Khora E-Commerce Platform | Era 3 | Light |
-| 19 | The End-to-End Stack (architecture) | Era 3 | Light |
-| 20 | The Real Cost of Vibe Coding | Era 3 | Light |
-| 21 | Lessons Learned | Looking Forward | Dark (blue) |
-| 22 | What This Means for Product Managers | Looking Forward | Light |
-| 23 | Thank You | Looking Forward | Dark (copper) |
+| # | Slide | Section | Type | Status |
+|---|-------|---------|------|--------|
+| 1 | Title — "From Predicting a Single Number to Agentic Coding" | Introduction | Hero (photo bg) | ✅ Done |
+| 2 | Who Am I? — Personal timeline with photos/certs | Introduction | Light | ✅ Done |
+| 3 | Six Years of Building With AI (timeline) | Introduction | Light | ❌ Not started |
+| 4–10 | Era 1 — "The Numbers Game" (7 slides) | Era 1 | Mixed | ❌ Not started |
+| 11–13 | Era 2 — "Teaching Machines to See" (3 slides) | Era 2 | Mixed | ❌ Not started |
+| 14–20 | Era 3 — "The Agentic Era" (7 slides) | Era 3 | Mixed | ❌ Not started |
+| 21–24 | Looking Forward (4 slides) | Looking Forward | Mixed | ❌ Not started |
+| 25 | Thank You | Looking Forward | Dark (copper) | ❌ Not started |
 
 ## Design System
 
@@ -91,6 +76,8 @@ All colors were intentionally desaturated after initial feedback that the origin
 - `.img-placeholder` — dashed-border placeholder (with fallback onerror on `<img>`)
 - `.era-label` / `.era1-label|.era2-label|.era3-label` — colored pill badges
 - `.divider` — 48px copper accent line
+- `.v-timeline` / `.tl-item` — vertical timeline with gradient line (blue→era2→copper), staggered fade-in per item (300ms apart, 700ms transition)
+- `.tl-images` — flex row of images within timeline items, 200px height, natural aspect ratio
 
 ## Technical Details
 
@@ -131,7 +118,7 @@ Run with `npx serve -l 3080 -s .` or use the `.claude/launch.json` config:
 
 | File | Slide | Content |
 |------|-------|---------|
-| `bg-hero.jpg` | #1 | Layered mountain ridges at dusk (Unsplash, by [photographer] Salzburg, Austria) |
+| `bg-hiker.jpg` | #1 | Hikers on mountain ridge at sunset (replaced bg-hero.jpg) |
 | `fig_scheme2.jpg` | #5 | CO₂ reduction reaction scheme |
 | `fig_feature_curve_clean.jpg` | #8 | Feature count vs model accuracy |
 | `fig_feature_importance.jpg` | #8 | Feature importance ranking |
@@ -141,6 +128,13 @@ Run with `npx serve -l 3080 -s .` or use the `.claude/launch.json` config:
 | `screenshots/edge demo.png` | #16 | Edge Mobile demo screenshot |
 | `screenshots/khora store front.png` | #18 | Khora storefront |
 | `khora-ecommerce-flow-screenshot.png` | #19 | Full-stack architecture diagram |
+| `slide 2/2014-1.jpg` | #2 | Syncrude R&D team dinner photo |
+| `slide 2/2014-2.jpg` | #2 | Syncrude office/desk photo |
+| `slide 2/2020-1.png` | #2 | Coursera cert — Python for Everybody |
+| `slide 2/2020-2.png` | #2 | Coursera cert — Applied Data Science with Python |
+| `slide 2/2020-3.png` | #2 | Udacity cert — Deep Learning |
+| `slide 2/2020-4.png` | #2 | Udacity cert — Intro to Machine Learning with Pytorch |
+| `slide 2/2020-5.png` | #2 | Udacity cert — Computer Vision Nanodegree |
 
 ## Reference Style
 Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minimalist, sophisticated, progressive disclosure, section-based navigation. Not a copy; same tier of quality and polish.
@@ -159,8 +153,39 @@ Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minima
 | 2026-06-19 | Title changed to "From Predicting a Single Number to Agentic Coding" | User's chosen title; subtitle "The Evolution of AI, From My Perspective" |
 | 2026-06-19 | Presentation date set to June 26, 2026 | User-specified date |
 
+| 2026-06-20 | Hero bg changed from bg-hero.jpg to bg-hiker.jpg | Gradient changed to left-to-right reveal; text moved to top-left |
+| 2026-06-20 | Slide 2 rebuilt as "Who Am I?" vertical timeline | Storytelling focus — 7 milestones from 2002–now with photos and certs inline |
+| 2026-06-20 | Timeline animations: slow staggered reveal | Each item fades in 300ms apart (total ~2.8s) for presentation pacing |
+| 2026-06-20 | Deck expanded from 23 to 25 slides | Accounting for title and ending slides per user spec |
+| 2026-06-20 | Page title updated to match slide title | "From Predicting a Single Number to Agentic Coding — Tony Zhang" |
+
+## Slide 2 — "Who Am I?" Details
+
+### Timeline entries (in order)
+1. **2002** — Immigrated to Canada (from Beijing, age 8)
+2. **2014** — First Internship at Syncrude R&D (2 photos: team dinner, office)
+3. **2018** — BASc. Chemical & Biological Engineering, UBC → moved to China for Tsinghua
+4. **2019–2020** — Covid Pivot: stuck in Canada, transitioned to computational, self-taught coding/ML (5 certs: 2 Coursera, 3 Udacity)
+5. **2021** — MSc. Computational Chemistry, Tsinghua University
+6. **2021–2025** — PM at Meituan, Healthcare Division
+7. **2026–Now** — PM at Microsoft, Edge Mobile
+
+### Design choices
+- Timeline dots: consistent copper outline, white fill
+- Timeline line: solid `var(--border)` color
+- Images: natural aspect ratio, 200px height, no cropping
+- PDF certs converted to PNG (sips) for `<img>` compatibility
+- Udacity SVGs replaced with PNG screenshots (SVGs had right-side padding issue)
+
+## Working process
+- Slides are built one at a time, each reviewed iteratively with user feedback
+- Next session should start with slide 3
+- User prefers storytelling/interactive style over bullet-point summaries
+- User wants consistent timeline markers (no color variation between dots)
+- User wants animations to be slow enough for presentation pacing
+
 ## Next Steps
-- Per-slide review and refinement (user wants to go one slide at a time, starting from slide 2)
-- Era 2 has only 3 slides (11-13) — may need expansion
-- Some image placeholders could be replaced with actual screenshots
-- Backend screenshots (`khora backend*.png`, `sneaker gan.png`) exist but aren't used yet
+- **Slide 3** is next — continue per-slide review and refinement
+- Slides 3–25 are placeholder content from the initial build; each will be rebuilt one at a time
+- Era 2 has only 3 slides (11-13) — may need expansion to hit 25 total
+- User may add image folders per slide (e.g. "slide 2/", "slide 3/") with assets named by year and order
