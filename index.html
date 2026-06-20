@@ -192,13 +192,15 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .timeline-card:nth-child(1) { border-top-color: var(--blue); }
 .timeline-card:nth-child(2) { border-top-color: var(--era2); }
 .timeline-card:nth-child(3) { border-top-color: var(--copper); }
-.timeline-card .era-num { font-family: var(--serif); font-size: 52px; line-height: 1; margin-bottom: 8px; }
+.timeline-card .era-num { font-family: var(--serif); font-size: 36px; line-height: 1; margin-bottom: 8px; }
 .timeline-card:nth-child(1) .era-num { color: var(--blue); }
 .timeline-card:nth-child(2) .era-num { color: var(--era2); }
 .timeline-card:nth-child(3) .era-num { color: var(--copper); }
 .timeline-card .era-years { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
 .timeline-card .era-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
 .timeline-card .era-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+.timeline-card .era-img-wrap { margin-top: 14px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center; }
+.timeline-card .era-img { width: 100%; height: auto; border-radius: 4px; display: block; }
 
 /* Vertical timeline */
 .v-timeline { position: relative; padding-left: 36px; margin-top: 24px; }
@@ -229,6 +231,10 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .slide.active .anim.d3 { transition-delay: 0.24s; }
 .slide.active .anim.d4 { transition-delay: 0.32s; }
 .slide.active .anim.d5 { transition-delay: 0.40s; }
+.timeline-card.anim { transition-duration: 0.7s; }
+.slide.active .timeline-card.anim.d4 { transition-delay: 0.4s; }
+.slide.active .timeline-card.anim.d5 { transition-delay: 0.7s; }
+.slide.active .timeline-card.anim.d6 { transition-delay: 1.0s; }
 
 /* Slide variants */
 .slide.centered { align-items: center; text-align: center; }
@@ -347,11 +353,11 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Introduction">
   <div class="section-label anim d1">The Journey</div>
   <h2 class="section-title anim d2">Six Years of Building With AI</h2>
-  <p class="subtitle anim d3" style="margin-bottom:8px;">Three eras, each fundamentally different in what AI could do — and what I could build with it.</p>
-  <div class="timeline-row anim d4">
-    <div class="timeline-card"><div class="era-num">1</div><div class="era-years">2018–2021</div><div class="era-title">The Numbers Game</div><div class="era-desc">ML as a research tool — predict one number to accelerate catalyst discovery. AI as a calculator.</div></div>
-    <div class="timeline-card"><div class="era-num">2</div><div class="era-years">2021–2023</div><div class="era-title">Teaching Machines to See</div><div class="era-desc">Computer vision enters consumer products — AI-powered skin analysis serving millions of users.</div></div>
-    <div class="timeline-card"><div class="era-num">3</div><div class="era-years">2025–Now</div><div class="era-title">The Agentic Era</div><div class="era-desc">Ship full products without writing code — vibe coding and autonomous agents change everything.</div></div>
+  <p class="subtitle anim d3" style="margin-bottom:8px; white-space:nowrap;">Three eras, each fundamentally different in what AI could do — and what I could build with it.</p>
+  <div class="timeline-row">
+    <div class="timeline-card anim d4"><div class="era-num">Era 1</div><div class="era-years">2018–2021</div><div class="era-title">The Numbers Game</div><div class="era-desc">ML as a research tool — predict one number to accelerate catalyst discovery. AI as a calculator.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 1.png" alt="CO₂ reduction heatmap"></div></div>
+    <div class="timeline-card anim d5"><div class="era-num">Era 2</div><div class="era-years">2021–2023</div><div class="era-title">Teaching Machines to See</div><div class="era-desc">Computer vision enters consumer products — AI-powered skin analysis serving millions of users.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 2.png" alt="Meituan skin analysis app"></div></div>
+    <div class="timeline-card anim d6"><div class="era-num">Era 3</div><div class="era-years">2025–Now</div><div class="era-title">The Agentic Era</div><div class="era-desc">Ship full products without writing code — vibe coding and autonomous agents change everything.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 3.png" alt="Edge Mobile demo"></div></div>
   </div>
 </div>
 

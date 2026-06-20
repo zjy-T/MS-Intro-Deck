@@ -13,7 +13,7 @@ Previously PM at Meituan (Healthcare). MSc Tsinghua (Computational Chemistry), B
 |---|-------|---------|------|--------|
 | 1 | Title — "From Predicting a Single Number to Agentic Coding" | Introduction | Hero (photo bg) | ✅ Done |
 | 2 | Who Am I? — Personal timeline with photos/certs | Introduction | Light | ✅ Done |
-| 3 | Six Years of Building With AI (timeline) | Introduction | Light | ❌ Not started |
+| 3 | Six Years of Building With AI (3-era cards) | Introduction | Light | ✅ Done |
 | 4–10 | Era 1 — "The Numbers Game" (7 slides) | Era 1 | Mixed | ❌ Not started |
 | 11–13 | Era 2 — "Teaching Machines to See" (3 slides) | Era 2 | Mixed | ❌ Not started |
 | 14–20 | Era 3 — "The Agentic Era" (7 slides) | Era 3 | Mixed | ❌ Not started |
@@ -135,6 +135,9 @@ Run with `npx serve -l 3080 -s .` or use the `.claude/launch.json` config:
 | `slide 2/2020-3.png` | #2 | Udacity cert — Deep Learning |
 | `slide 2/2020-4.png` | #2 | Udacity cert — Intro to Machine Learning with Pytorch |
 | `slide 2/2020-5.png` | #2 | Udacity cert — Computer Vision Nanodegree |
+| `slide 3/era 1.png` | #3 | CO₂ reduction heatmap (Era 1 preview) |
+| `slide 3/era 2.png` | #3 | Meituan skin analysis app screenshots (Era 2 preview) |
+| `slide 3/era 3.png` | #3 | Edge Mobile demo with toolbox (Era 3 preview) |
 
 ## Reference Style
 Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minimalist, sophisticated, progressive disclosure, section-based navigation. Not a copy; same tier of quality and polish.
@@ -158,6 +161,10 @@ Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minima
 | 2026-06-20 | Timeline animations: slow staggered reveal | Each item fades in 300ms apart (total ~2.8s) for presentation pacing |
 | 2026-06-20 | Deck expanded from 23 to 25 slides | Accounting for title and ending slides per user spec |
 | 2026-06-20 | Page title updated to match slide title | "From Predicting a Single Number to Agentic Coding — Tony Zhang" |
+| 2026-06-20 | Slide 3: three-era cards with preview images | Each era gets a card with title, years, description, and a representative image |
+| 2026-06-20 | Era labels show "Era 1/2/3" not just numbers | More readable at a glance during presentation |
+| 2026-06-20 | Era card images use consistent framing | `.era-img-wrap` with border + background padding for visual consistency across different image styles |
+| 2026-06-20 | Era cards animate in individually (0.7s, 300ms apart) | Matches slide 2 timeline pacing; scoped to `.timeline-card` to avoid affecting other slides |
 
 ## Slide 2 — "Who Am I?" Details
 
@@ -177,15 +184,32 @@ Inspired by [eclipse.tasteful.work](https://eclipse.tasteful.work/#1) — minima
 - PDF certs converted to PNG (sips) for `<img>` compatibility
 - Udacity SVGs replaced with PNG screenshots (SVGs had right-side padding issue)
 
+## Slide 3 — "Six Years of Building With AI" Details
+
+### Layout
+- Three-column grid of era cards (`.timeline-row` → `.timeline-card`)
+- Each card: "Era N" label (serif, era-colored), year range, title, description, framed preview image
+- Cards have colored top borders (blue / era2 / copper) matching their era
+- Subtitle is forced single-line (`white-space: nowrap`)
+
+### Animation
+- Cards stagger in individually: 0.4s → 0.7s → 1.0s delay, 0.7s duration
+- Scoped via `.timeline-card.anim.d4/d5/d6` selectors (doesn't affect global d5)
+
+### Era cards content
+1. **Era 1** — "The Numbers Game" (2018–2021) — heatmap image
+2. **Era 2** — "Teaching Machines to See" (2021–2023) — skin analysis app image
+3. **Era 3** — "The Agentic Era" (2025–Now) — Edge Mobile demo image
+
 ## Working process
 - Slides are built one at a time, each reviewed iteratively with user feedback
-- Next session should start with slide 3
+- Next session should start with slide 4
 - User prefers storytelling/interactive style over bullet-point summaries
 - User wants consistent timeline markers (no color variation between dots)
 - User wants animations to be slow enough for presentation pacing
 
 ## Next Steps
-- **Slide 3** is next — continue per-slide review and refinement
-- Slides 3–25 are placeholder content from the initial build; each will be rebuilt one at a time
+- **Slide 4** is next — Era 1 section opener
+- Slides 4–25 are placeholder content from the initial build; each will be rebuilt one at a time
 - Era 2 has only 3 slides (11-13) — may need expansion to hit 25 total
 - User may add image folders per slide (e.g. "slide 2/", "slide 3/") with assets named by year and order
