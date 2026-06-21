@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
 :root {
   --bg: #F7F6F3;
@@ -36,23 +37,28 @@
 
 html, body {
   height: 100%; width: 100%; overflow: hidden;
-  background: var(--bg); color: var(--text);
+  background: #000; color: var(--text);
   font-family: var(--sans); font-weight: 400; font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
-#deck { width: 100%; height: 100vh; position: relative; overflow: hidden; }
+#deck {
+  width: 1280px; height: 720px; position: absolute;
+  top: 50%; left: 50%;
+  transform-origin: center center;
+  overflow: hidden; background: var(--bg);
+}
 
 .slide {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0; width: 1280px; height: 720px;
   display: flex; flex-direction: column; justify-content: center;
   padding: 48px 72px 56px; background: var(--bg);
-  visibility: hidden; pointer-events: none; overflow-y: auto;
+  visibility: hidden; pointer-events: none; overflow: hidden;
 }
 .slide.active { visibility: visible; pointer-events: auto; }
 
 /* Nav */
-#nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 20px; z-index: 100; }
+#nav { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 20px; z-index: 100; }
 #nav .counter { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.08em; min-width: 56px; text-align: center; font-variant-numeric: tabular-nums; }
 #nav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; font-size: 14px; }
 #nav button:hover { background: var(--blue); color: white; border-color: var(--blue); }
@@ -63,14 +69,14 @@ body.dark-nav #nav button:disabled { opacity: 0.25; background: rgba(255,255,255
 body.dark-nav #nav .counter { color: rgba(255,255,255,0.5); }
 
 /* Progress */
-#progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--copper)); transition: width 0.4s cubic-bezier(0.23,1,0.32,1); z-index: 100; }
+#progress { position: absolute; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--copper)); transition: width 0.4s cubic-bezier(0.23,1,0.32,1); z-index: 100; }
 
 /* Section indicator */
-#section-indicator { position: fixed; top: 28px; left: 72px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); transition: all 0.4s ease; z-index: 100; }
+#section-indicator { position: absolute; top: 28px; left: 72px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); transition: all 0.4s ease; z-index: 100; }
 body.dark-nav #section-indicator { color: rgba(255,255,255,0.45); }
 
 /* TOC */
-#toc { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 6px; opacity: 0; transition: opacity 0.3s ease; }
+#toc { position: absolute; right: 28px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 6px; opacity: 0; transition: opacity 0.3s ease; }
 #toc:hover, body.toc-visible #toc { opacity: 1; }
 .toc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s ease; position: relative; }
 .toc-dot.active { background: var(--blue); transform: scale(1.5); }
@@ -187,27 +193,27 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .point-box .point-text { font-family: var(--serif); font-size: 21px; line-height: 1.55; color: var(--text-secondary); font-style: italic; }
 
 /* Timeline */
-.timeline-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 20px; }
-.timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 28px; border-top: 3px solid transparent; }
+.timeline-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 12px; }
+.timeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; border-top: 3px solid transparent; }
 .timeline-card:nth-child(1) { border-top-color: var(--blue); }
 .timeline-card:nth-child(2) { border-top-color: var(--era2); }
 .timeline-card:nth-child(3) { border-top-color: var(--copper); }
-.timeline-card .era-num { font-family: var(--serif); font-size: 36px; line-height: 1; margin-bottom: 8px; }
+.timeline-card .era-num { font-family: var(--serif); font-size: 32px; line-height: 1; margin-bottom: 4px; }
 .timeline-card:nth-child(1) .era-num { color: var(--blue); }
 .timeline-card:nth-child(2) .era-num { color: var(--era2); }
 .timeline-card:nth-child(3) .era-num { color: var(--copper); }
-.timeline-card .era-years { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
-.timeline-card .era-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
-.timeline-card .era-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
-.timeline-card .era-img-wrap { margin-top: 14px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center; }
-.timeline-card .era-img { width: 100%; height: auto; border-radius: 4px; display: block; }
+.timeline-card .era-years { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.timeline-card .era-title { font-family: var(--serif); font-size: 20px; margin-bottom: 4px; }
+.timeline-card .era-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+.timeline-card .era-img-wrap { margin-top: 6px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 4px; display: flex; align-items: center; justify-content: center; }
+.timeline-card .era-img { width: 100%; height: auto; max-height: 180px; object-fit: contain; border-radius: 4px; display: block; }
 
 /* Vertical timeline */
-.v-timeline { position: relative; padding-left: 36px; margin-top: 24px; }
-.v-timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
-.tl-item { position: relative; margin-bottom: 18px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.v-timeline { position: relative; padding-left: 28px; margin-top: 12px; }
+.v-timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 6px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .tl-item:last-child { margin-bottom: 0; }
-.tl-item::before { content: ''; position: absolute; left: -33px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--copper); z-index: 1; }
+.tl-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--copper); z-index: 1; }
 .slide.active .tl-item { opacity: 1; transform: translateY(0); }
 .slide.active .tl-item:nth-child(1) { transition-delay: 0.3s; }
 .slide.active .tl-item:nth-child(2) { transition-delay: 0.6s; }
@@ -216,12 +222,12 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .slide.active .tl-item:nth-child(5) { transition-delay: 1.5s; }
 .slide.active .tl-item:nth-child(6) { transition-delay: 1.8s; }
 .slide.active .tl-item:nth-child(7) { transition-delay: 2.1s; }
-.tl-item .tl-year { font-family: var(--serif); font-size: 22px; color: var(--text); line-height: 1; margin-bottom: 4px; }
-.tl-item .tl-title { font-size: 17px; font-weight: 500; color: var(--text); line-height: 1.4; }
-.tl-item .tl-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-top: 3px; }
-.tl-images { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
-.tl-images .img-frame { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-.tl-images .img-frame img { display: block; height: 200px; width: auto; border-radius: 7px; }
+.tl-item .tl-year { font-family: var(--serif); font-size: 18px; color: var(--text); line-height: 1; margin-bottom: 2px; }
+.tl-item .tl-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
+.tl-item .tl-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px; }
+.tl-images { display: flex; gap: 6px; margin-top: 4px; align-items: center; }
+.tl-images .img-frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+.tl-images .img-frame img { display: block; height: 72px; width: auto; border-radius: 5px; }
 
 /* Animations */
 .slide .anim { opacity: 0; transform: translateY(12px); transition: opacity 0.45s ease, transform 0.45s ease; }
@@ -239,10 +245,10 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 /* Slide variants */
 .slide.centered { align-items: center; text-align: center; }
 .slide.centered .subtitle { margin: 0 auto; }
-.slide.top { justify-content: flex-start; padding-top: 80px; }
+.slide.top { justify-content: flex-start; padding-top: 56px; }
 
 /* Keys hint */
-#keys-hint { position: fixed; bottom: 28px; right: 28px; font-size: 11px; color: var(--text-muted); z-index: 100; display: flex; gap: 4px; align-items: center; }
+#keys-hint { position: absolute; bottom: 28px; right: 28px; font-size: 11px; color: var(--text-muted); z-index: 100; display: flex; gap: 4px; align-items: center; }
 #keys-hint kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--border); border-radius: 3px; font-size: 10px; background: var(--surface); }
 
 /* Hero slide */
@@ -346,19 +352,12 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 16px;
 }
 
-@media (max-width: 1200px) {
-  .slide { padding: 40px 56px 48px; }
-  h1.title-xl { font-size: 44px; }
-  .slide.hero-slide .hero-title { font-size: 42px; }
-  .era1-hero-title { font-size: 42px; }
-  .stat-row { grid-template-columns: repeat(2,1fr); }
-  .timeline-row, .two-col { grid-template-columns: 1fr; gap: 20px; }
-  .takeaway-grid { grid-template-columns: 1fr; }
-}
+/* Responsive media query removed — deck uses fixed 1280×720 canvas with uniform scaling */
 </style>
 </head>
 <body>
 
+<div id="deck">
 <div id="progress" style="width:0%"></div>
 <div id="section-indicator"></div>
 <div id="toc"></div>
@@ -368,8 +367,6 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   <button id="next-btn" onclick="go(1)">→</button>
 </div>
 <div id="keys-hint"><kbd>←</kbd> <kbd>→</kbd> navigate</div>
-
-<div id="deck">
 
 <!-- 1. TITLE -->
 <div class="slide dark-slide hero-slide" data-section="Introduction">
@@ -381,13 +378,13 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 <!-- 2. ABOUT ME -->
 <div class="slide top" data-section="Introduction">
-  <h1 class="title-lg anim d1">Who Am I?</h1>
-  <p class="anim d2" style="font-size:19px;font-weight:500;color:var(--text-secondary);margin-top:-8px;margin-bottom:4px;">Tony Zhang</p>
+  <h1 class="title-lg anim d1" style="font-size:36px;margin-bottom:4px;">Who Am I?</h1>
+  <p class="anim d2" style="font-size:15px;font-weight:500;color:var(--text-secondary);margin-top:-4px;margin-bottom:0;">Tony Zhang</p>
   <div class="v-timeline">
     <div class="tl-item">
       <div class="tl-year">2002</div>
       <div class="tl-title">Immigrated to Canada</div>
-      <div class="tl-desc">Moved from Beijing with my parents at the age of 8.</div>
+      <div class="tl-desc">Arrived in Calgary, Canada at the age of 8.</div>
     </div>
     <div class="tl-item">
       <div class="tl-year">2014</div>
@@ -434,7 +431,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Introduction">
   <div class="section-label anim d1">The Journey</div>
   <h2 class="section-title anim d2">Six Years of Building With AI</h2>
-  <p class="subtitle anim d3" style="margin-bottom:8px; white-space:nowrap;">Three eras, each fundamentally different in what AI could do — and what I could build with it.</p>
+  <p class="subtitle anim d3" style="margin-bottom:4px; white-space:nowrap;">Three eras, each fundamentally different in what AI could do — and what I could build with it.</p>
   <div class="timeline-row">
     <div class="timeline-card anim d4"><div class="era-num">Era 1</div><div class="era-years">2018–2021</div><div class="era-title">The Numbers Game</div><div class="era-desc">ML as a research tool — predict one number to accelerate catalyst discovery. AI as a calculator.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 1.png" alt="CO₂ reduction heatmap"></div></div>
     <div class="timeline-card anim d5"><div class="era-num">Era 2</div><div class="era-years">2021–2023</div><div class="era-title">Teaching Machines to See</div><div class="era-desc">Computer vision enters consumer products — AI-powered skin analysis serving millions of users.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 2.png" alt="Meituan skin analysis app"></div></div>
@@ -455,8 +452,8 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Era 1 · The Numbers Game">
   <div class="section-label anim d1">Era 1 · The Problem</div>
   <h3 class="slide-title anim d2">The Science Problem</h3>
-  <p class="subtitle anim d3" style="margin-bottom:14px;white-space:nowrap;">Electrochemical CO₂ reduction (CO₂RR) converts atmospheric CO₂ into fuel products — but product quality depends entirely on the <span style="border-bottom:1.5px dashed var(--text-muted);cursor:help;" title="A catalyst is a material that speeds up a chemical reaction without being consumed — think of it as a matchmaker that decides which products get made.">catalyst</span>.</p>
-  <div class="two-col anim d4" style="margin-top:0;align-items:start;">
+  <p class="subtitle anim d3" style="margin-bottom:4px;white-space:nowrap;">Electrochemical CO₂ reduction (CO₂RR) converts atmospheric CO₂ into fuel products — but product quality depends entirely on the <span style="border-bottom:1.5px dashed var(--text-muted);cursor:help;" title="A catalyst is a material that speeds up a chemical reaction without being consumed — think of it as a matchmaker that decides which products get made.">catalyst</span>.</p>
+  <div class="two-col anim d4" style="margin-top:0;align-items:center;">
     <div style="display:flex;flex-direction:column;gap:8px;">
       <div class="s5-item s5-good">
         <div class="s5-dot" style="background:#4A8C6F;"></div>
@@ -489,7 +486,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     </div>
     <img src="era 1/5-1.png" alt="CO₂ reduction reaction — product selectivity" style="width:100%;height:auto;border-radius:10px;">
   </div>
-  <div class="s5-goal anim d5" style="margin-top:14px;">
+  <div class="s5-goal anim d5" style="margin-top:8px;">
     <span style="font-weight:600;color:var(--blue);white-space:nowrap;">The Goal</span>
     <span style="color:var(--text-secondary);">Find which catalyst materials maximize high-value fuel production from CO₂.</span>
   </div>
@@ -524,15 +521,24 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Era 1 · The Numbers Game">
   <div class="section-label anim d1">Era 1 · The Approach</div>
   <h3 class="slide-title anim d2">The AI-for-Science Approach</h3>
-  <p class="subtitle anim d3" style="margin-bottom:16px;">Train a regression algorithm on catalyst data to predict DFT results directly.</p>
-  <div class="anim d4" style="margin-bottom:16px;display:flex;justify-content:center;">
-    <img src="era 1/7-1.png" alt="Dataset structure — 289 catalyst candidates with 52 features and target variable" style="width:80%;height:auto;border-radius:10px;">
+  <p class="subtitle anim d3" style="margin-bottom:6px;">Train a regression algorithm on catalyst data to predict DFT results directly.</p>
+  <div class="anim d4" style="overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);">
+    <div style="height:380px;overflow:auto;" id="s7-table-wrap">
+      <table id="s7-table" style="width:max-content;min-width:100%;border-collapse:collapse;font-size:10px;font-family:var(--sans);">
+        <thead style="position:sticky;top:0;z-index:1;" id="s7-thead"></thead>
+        <tbody id="s7-tbody"></tbody>
+      </table>
+    </div>
+    <div style="padding:5px 12px;font-size:10px;color:var(--text-muted);background:var(--surface-alt);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-shrink:0;">
+      <span>Scroll to explore · ΔG values: <span style="color:#4A8C6F;font-weight:600;">■</span> favorable · <span style="color:#B85C5C;font-weight:600;">■</span> unfavorable · <span style="color:var(--text-muted);">—</span> no DFT data</span>
+      <span style="color:var(--blue);font-weight:500;" id="s7-counter">289 rows × 52 features + 1 target</span>
+    </div>
   </div>
-  <div class="stat-row" style="margin-top:0;">
-    <div class="stat-card accent anim s7-card" style="--card-delay:0.5s;"><div class="number">289</div><div class="label">Catalyst<br>candidates</div></div>
-    <div class="stat-card accent anim s7-card" style="--card-delay:0.7s;"><div class="number">52</div><div class="label">Physio-chemical<br>features each</div></div>
-    <div class="stat-card accent anim s7-card" style="--card-delay:0.9s;"><div class="number">8</div><div class="label">Regression<br>models tested</div></div>
-    <div class="stat-card accent anim s7-card" style="--card-delay:1.1s;"><div class="number">1</div><div class="label">Target variable<br>(energy barrier)</div></div>
+  <div class="stat-row" style="margin-top:6px;">
+    <div class="stat-card accent anim s7-card" id="s7-card-289" style="--card-delay:0.5s;cursor:pointer;transition:all 0.2s;padding:10px 14px;"><div class="number" style="font-size:28px;">289</div><div class="label">Catalyst candidates</div></div>
+    <div class="stat-card accent anim s7-card" id="s7-card-52" style="--card-delay:0.7s;cursor:pointer;transition:all 0.2s;padding:10px 14px;"><div class="number" style="font-size:28px;">52</div><div class="label">Features each</div></div>
+    <div class="stat-card accent anim s7-card" id="s7-card-8" style="--card-delay:0.9s;cursor:pointer;transition:all 0.2s;padding:10px 14px;"><div class="number" style="font-size:28px;">8</div><div class="label">Models tested</div></div>
+    <div class="stat-card accent anim s7-card" id="s7-card-1" style="--card-delay:1.1s;cursor:pointer;transition:all 0.2s;padding:10px 14px;"><div class="number" style="font-size:28px;">1</div><div class="label">Target variable</div></div>
   </div>
 </div>
 
@@ -542,12 +548,16 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   <h3 class="slide-title anim d2">Optimizing Through Feature Reduction</h3>
   <div class="two-col anim d3" style="margin-top:12px;align-items:stretch;">
     <div style="display:flex;flex-direction:column;">
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;"><img src="era 1/8-1.png" alt="Feature count vs RMSE, MAE, and computation time" style="width:76%;height:auto;border-radius:10px;"></div>
-      <p style="font-size:17px;color:var(--text-secondary);line-height:1.55;margin-top:14px;"><strong style="color:var(--blue);">Finding the signal in the noise:</strong> More features adds noise and overfitting. Too few loses predictive power. The optimum sits in between.</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;">
+        <canvas id="chart-feature-reduction" width="520" height="340"></canvas>
+      </div>
+      <p style="font-size:15px;color:var(--text-secondary);line-height:1.5;margin-top:10px;"><strong style="color:var(--blue);">Finding the signal in the noise:</strong> More features adds noise and overfitting. Too few loses predictive power. The optimum sits in between.</p>
     </div>
     <div style="display:flex;flex-direction:column;">
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;"><img src="era 1/8-2.png" alt="Feature importance ranking — top 6 physicochemical features" style="width:85%;height:auto;border-radius:10px;"></div>
-      <p style="font-size:17px;color:var(--text-secondary);line-height:1.55;margin-top:14px;"><strong style="color:var(--copper);">Mapping the chemical space:</strong> The model identifies which physical properties matter most for accurate prediction.</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;">
+        <canvas id="chart-feature-importance" width="520" height="340"></canvas>
+      </div>
+      <p style="font-size:15px;color:var(--text-secondary);line-height:1.5;margin-top:10px;"><strong style="color:var(--copper);">Mapping the chemical space:</strong> The model identifies which physical properties matter most for accurate prediction.</p>
     </div>
   </div>
 </div>
@@ -555,41 +565,25 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <!-- 9. ERA 1 RESULTS -->
 <div class="slide top" data-section="Era 1 · The Numbers Game">
   <div class="section-label anim d1">Era 1 · The Results</div>
-  <h3 class="slide-title anim d2">The Results — Highly Accelerated and Accurate</h3>
-  <div class="anim d3" style="margin-top:12px;display:flex;justify-content:center;">
-    <img src="era 1/9-1.png" alt="Heatmap — predicted CO dimerization energy across adsorbate pairs" style="height:800px;width:auto;max-width:100%;border-radius:10px;">
+  <h3 class="slide-title anim d2" style="margin-bottom:6px;">The Results — Highly Accelerated and Accurate</h3>
+  <div class="anim d3" style="position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;display:flex;justify-content:center;">
+    <canvas id="chart-heatmap" width="1040" height="680" style="display:block;cursor:crosshair;width:520px;height:340px;"></canvas>
+    <div id="heatmap-tooltip" style="display:none;position:absolute;background:rgba(26,26,26,0.9);color:white;padding:8px 12px;border-radius:6px;font-size:12px;pointer-events:none;z-index:10;white-space:nowrap;"></div>
   </div>
-  <div class="stat-row anim d4" style="margin-top:16px;grid-template-columns:repeat(5,1fr);gap:10px;">
-    <div class="stat-card accent anim s9-card" style="--card-delay:0.4s;padding:14px 10px;"><div class="number" style="font-size:26px;">100,000×</div><div class="label" style="font-size:11px;">Speed increase<br>compared to DFT</div></div>
-    <div class="stat-card accent anim s9-card" style="--card-delay:0.55s;padding:14px 10px;"><div class="number" style="font-size:26px;">$150,000</div><div class="label" style="font-size:11px;">Saved in computation<br>cost</div></div>
-    <div class="stat-card accent anim s9-card" style="--card-delay:0.7s;padding:14px 10px;"><div class="number" style="font-size:26px;">94%</div><div class="label" style="font-size:11px;">Accuracy compared to<br>traditional DFT</div></div>
-    <div class="stat-card accent anim s9-card" style="--card-delay:0.85s;padding:14px 10px;"><div class="number" style="font-size:26px;">80</div><div class="label" style="font-size:11px;">Potential catalyst<br>candidates identified</div></div>
-    <div class="stat-card accent anim s9-card" style="--card-delay:1.0s;padding:14px 10px;"><div class="number" style="font-size:26px;">215%</div><div class="label" style="font-size:11px;">Performance increase<br>to the current standard</div></div>
+  <div class="anim d4" style="display:flex;gap:8px;margin-top:8px;">
+    <div class="stat-card accent s9-card" style="--card-delay:0.4s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">100,000×</div><div class="label" style="font-size:9px;">Speed vs DFT</div></div>
+    <div class="stat-card accent s9-card" style="--card-delay:0.5s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">$150K</div><div class="label" style="font-size:9px;">Cost saved</div></div>
+    <div class="stat-card accent s9-card" style="--card-delay:0.6s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">94%</div><div class="label" style="font-size:9px;">Accuracy vs DFT</div></div>
+    <div class="stat-card accent s9-card" style="--card-delay:0.7s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">80</div><div class="label" style="font-size:9px;">Candidates found</div></div>
+    <div class="stat-card accent s9-card" style="--card-delay:0.8s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">215%</div><div class="label" style="font-size:9px;">vs current standard</div></div>
   </div>
-  <div class="callout anim d5" style="margin-top:16px;border-left-color:var(--blue);font-size:15px;line-height:1.7;">
-    <strong style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);display:block;margin-bottom:6px;">The Summary</strong>
-    Our model was able to reduce the screening time of the 289 catalyst from years down to seconds, saving over $150k in computation cost while maintaining a 94% accuracy compared to DFT calculations. Our study also identified a catalyst material with a theoretical output of 215% increase over the current best identified catalyst.<br><br>
-    This project used AI as a calculator — narrow, specialized, and nowhere near general intelligence. But it turned a years-long screening problem into an instantaneous one.
+  <div class="anim d5" style="margin-top:8px;font-size:13px;color:var(--text-secondary);line-height:1.5;">
+    <strong style="color:var(--blue);">Summary:</strong> Our model reduced screening time from years to seconds, saving over $150K while maintaining 94% accuracy. We identified a catalyst with 215% performance increase over the current best. AI as a calculator — narrow and specialized, but it turned a years-long problem into an instantaneous one.
   </div>
-  <p class="anim d5" style="font-size:12px;color:var(--text-muted);margin-top:10px;text-align:right;">Published in <em>J. Phys. Chem. C</em> 2021, 125, 28, 15363–15372</p>
+  <p class="anim d5" style="font-size:11px;color:var(--text-muted);margin-top:4px;text-align:right;">Published in <em>J. Phys. Chem. C</em> 2021, 125, 28, 15363–15372</p>
 </div>
 
-<!-- 10. ERA 1 TAKEAWAY -->
-<div class="slide centered" data-section="Era 1 · The Numbers Game">
-  <div class="point-box anim d2">
-    <div class="section-label" style="margin-bottom:16px;color:var(--blue);">The Takeaway</div>
-    <p class="point-text">This is AI as a calculator — narrow, specialized, and nowhere near general intelligence. But it turned a years-long screening problem into an instantaneous one.</p>
-  </div>
-  <div class="anim d3" style="margin-top:28px;display:flex;gap:20px;">
-    <div style="text-align:center;padding:16px 24px;background:var(--blue-bg);border-radius:8px;flex:1;"><div style="font-size:12px;color:var(--blue);font-weight:500;">INPUT</div><div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Tabular catalyst data</div></div>
-    <div style="font-size:20px;color:var(--copper);align-self:center;">→</div>
-    <div style="text-align:center;padding:16px 24px;background:var(--blue-bg);border-radius:8px;flex:1;"><div style="font-size:12px;color:var(--blue);font-weight:500;">MODEL</div><div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Regression algorithm</div></div>
-    <div style="font-size:20px;color:var(--copper);align-self:center;">→</div>
-    <div style="text-align:center;padding:16px 24px;background:var(--blue-bg);border-radius:8px;flex:1;"><div style="font-size:12px;color:var(--blue);font-weight:500;">OUTPUT</div><div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">One number (energy barrier)</div></div>
-  </div>
-</div>
-
-<!-- 11. ERA 2 SECTION -->
+<!-- 10. ERA 2 SECTION -->
 <div class="slide tinted-era2 centered" data-section="Era 2 · Computer Vision">
   <span class="era-label era2-label anim d1">Era Two · 2021–2023</span>
   <h1 class="title-lg anim d2" style="color:var(--era2);">Teaching Machines to See</h1>
@@ -779,6 +773,18 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <script>
+// Fixed-canvas scaling: 1280×720 design → fit any viewport
+(function scaleDeck(){
+  const deck = document.getElementById('deck');
+  function resize(){
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s = Math.min(vw/1280, vh/720);
+    deck.style.transform = 'translate(-50%,-50%) scale('+s+')';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+})();
+
 const slides = document.querySelectorAll('.slide');
 const total = slides.length;
 let current = 0;
@@ -804,6 +810,9 @@ function updateToc() {
   dots.forEach((d,i) => d.classList.toggle('active', sections[i].name === cs));
 }
 
+const slideCallbacks = {};
+function onSlideEnter(idx, fn) { (slideCallbacks[idx] = slideCallbacks[idx] || []).push(fn); }
+
 function goTo(index) {
   if (index < 0 || index >= total || index === current) return;
   slides[current].classList.remove('active');
@@ -811,6 +820,7 @@ function goTo(index) {
   slides[current].classList.add('active');
   document.body.classList.toggle('dark-nav', slides[current].classList.contains('dark-slide'));
   update();
+  (slideCallbacks[current] || []).forEach(fn => fn());
 }
 function go(dir) { goTo(current + dir); }
 
@@ -838,8 +848,326 @@ document.addEventListener('keydown', e => {
 let tx=0;
 document.addEventListener('touchstart', e => { tx=e.touches[0].clientX; });
 document.addEventListener('touchend', e => { const d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>60) go(d>0?1:-1); });
-document.addEventListener('mousemove', e => { document.body.classList.toggle('toc-visible', e.clientX>window.innerWidth-80); });
+document.addEventListener('mousemove', e => {
+  const deck = document.getElementById('deck');
+  const rect = deck.getBoundingClientRect();
+  const relX = e.clientX - rect.left;
+  document.body.classList.toggle('toc-visible', relX > rect.width - 60);
+});
 document.addEventListener('keydown', () => { const h=document.getElementById('keys-hint'); if(h) h.style.opacity='0'; }, {once:true});
+
+// ── Slide 7: Full 289-row interactive data table + model comparison ──
+(function(){
+  let s7data = null;
+  let s7highlight = null;
+
+  fetch('era 1/training-data.json').then(r=>r.json()).then(d => {
+    s7data = d;
+    buildTable(d);
+  });
+
+  function buildTable(d) {
+    const thead = document.getElementById('s7-thead');
+    const tbody = document.getElementById('s7-tbody');
+    const cols = d.columns;
+    const lastCol = cols.length - 1;
+
+    const tr = document.createElement('tr');
+    tr.style.cssText = 'background:var(--blue);color:white;';
+    cols.forEach((c,j) => {
+      const th = document.createElement('th');
+      th.style.cssText = 'padding:5px 6px;text-align:'+(j<2?'left':'right')+';font-weight:500;white-space:nowrap;font-size:9px;';
+      if (j === lastCol) th.style.cssText += 'background:var(--copper);';
+      th.className = 's7-col-'+j;
+      const short = c.replace('num of ','#').replace('Average ','Avg ').replace('Adsorbate ','Ads ').replace(' minus ','-').replace(' add ','+').replace(' squared','²').replace('of Adsorbates ','').replace('of Adosrbates ','').replace('Covalent Radius','CovR').replace('Valence Electron','VE').replace('VdW Radius','VdW').replace('Atomic num','AtNum').replace('G_C2O2 - Gco','ΔG (eV)');
+      th.textContent = short;
+      tr.appendChild(th);
+    });
+    thead.appendChild(tr);
+
+    d.data.forEach((r,i) => {
+      const row = document.createElement('tr');
+      const hasDG = r[lastCol] !== null;
+      row.style.background = i%2===0 ? 'var(--surface)' : 'var(--surface-alt)';
+      row.style.transition = 'background 0.15s';
+      row.onmouseenter = function(){ this.style.background='var(--blue-bg)'; };
+      row.onmouseleave = function(){ this.style.background=i%2===0?'var(--surface)':'var(--surface-alt)'; };
+      r.forEach((v,j) => {
+        const td = document.createElement('td');
+        td.className = 's7-col-'+j;
+        td.style.cssText = 'padding:4px 6px;border-bottom:1px solid var(--border);text-align:'+(j<2?'left':'right')+';white-space:nowrap;';
+        if (j === lastCol && v !== null) {
+          td.style.color = v < 0 ? '#4A8C6F' : '#B85C5C';
+          td.style.fontWeight = '600';
+          td.textContent = v.toFixed(5);
+        } else if (j === lastCol) {
+          td.textContent = '—';
+          td.style.color = 'var(--text-muted)';
+        } else if (typeof v === 'number') {
+          td.textContent = Number.isInteger(v) ? v : v.toFixed(2);
+        } else {
+          td.textContent = v;
+        }
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+  }
+
+  function highlightCols(type) {
+    if (s7highlight === type) { clearHighlight(); return; }
+    s7highlight = type;
+    const table = document.getElementById('s7-table');
+    const allCells = table.querySelectorAll('th, td');
+    allCells.forEach(c => c.style.removeProperty('background-color'));
+
+    let colIndices = [];
+    if (type === 'features') {
+      for (let i=2; i<=53; i++) colIndices.push(i);
+    } else if (type === 'target') {
+      colIndices = [54];
+    } else if (type === 'candidates') {
+      colIndices = [0,1];
+    }
+
+    colIndices.forEach(ci => {
+      table.querySelectorAll('.s7-col-'+ci).forEach(el => {
+        el.style.backgroundColor = type==='target' ? 'rgba(158,133,117,0.2)' : type==='features' ? 'rgba(92,107,127,0.15)' : 'rgba(92,107,127,0.2)';
+      });
+    });
+
+    document.querySelectorAll('#s7-card-289,#s7-card-52,#s7-card-1').forEach(c => c.style.removeProperty('box-shadow'));
+    const cardId = type==='candidates'?'s7-card-289':type==='features'?'s7-card-52':'s7-card-1';
+    document.getElementById(cardId).style.boxShadow = '0 0 0 2.5px var(--blue)';
+  }
+
+  function clearHighlight() {
+    s7highlight = null;
+    const table = document.getElementById('s7-table');
+    table.querySelectorAll('th, td').forEach(c => c.style.removeProperty('background-color'));
+    document.querySelectorAll('#s7-card-289,#s7-card-52,#s7-card-1,#s7-card-8').forEach(c => c.style.removeProperty('box-shadow'));
+  }
+
+  document.getElementById('s7-card-289').addEventListener('mouseenter', () => highlightCols('candidates'));
+  document.getElementById('s7-card-289').addEventListener('mouseleave', clearHighlight);
+  document.getElementById('s7-card-52').addEventListener('mouseenter', () => highlightCols('features'));
+  document.getElementById('s7-card-52').addEventListener('mouseleave', clearHighlight);
+  document.getElementById('s7-card-1').addEventListener('mouseenter', () => highlightCols('target'));
+  document.getElementById('s7-card-1').addEventListener('mouseleave', clearHighlight);
+})();
+
+// ── Slide 8: Feature reduction chart + feature importance chart (animated) ──
+(function(){
+  const blue = '#5C6B7F', copper = '#9E8575';
+  const featureData = {
+    features: [52,45,38,29,19,8,7,6,5,4],
+    mae:  [0.031,0.031,0.031,0.0303,0.0252,0.0269,0.026,0.0223,0.017,0.0177],
+    rmse: [0.0431,0.043,0.043,0.0426,0.0363,0.0379,0.0368,0.0308,0.0248,0.0274]
+  };
+
+  let lineChart = null, barChart = null;
+  const delay = 180;
+
+  const lineShared = {
+    labels: featureData.features.map(String),
+    datasets: [
+      { label: 'RMSE (eV)', data: featureData.rmse, borderColor: blue, backgroundColor: blue+'33', tension: 0.3, pointRadius: 5, pointHoverRadius: 7, fill: false, borderWidth: 2.5 },
+      { label: 'MAE (eV)', data: featureData.mae, borderColor: copper, backgroundColor: copper+'33', tension: 0.3, pointRadius: 5, pointHoverRadius: 7, fill: false, borderWidth: 2.5, borderDash: [5,3] }
+    ]
+  };
+
+  const lineOpts = {
+    responsive: false,
+    animation: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: "'DM Sans'", size: 11 }, usePointStyle: true, pointStyle: 'circle', padding: 14 }},
+      title: { display: true, text: 'Model Error vs Feature Count (XGBR)', font: { family: "'DM Sans'", size: 13, weight: '500' }, color: '#1A1A1A', padding: { bottom: 8 }},
+      tooltip: { backgroundColor: 'rgba(26,26,26,0.9)', titleFont: { family: "'DM Sans'" }, bodyFont: { family: "'DM Sans'" }, padding: 10, cornerRadius: 6 }
+    },
+    scales: {
+      x: { title: { display: true, text: '# Features', font: { family: "'DM Sans'", size: 11 }, color: '#8A8A8A' }, grid: { display: false }, ticks: { font: { family: "'DM Sans'", size: 10 }, color: '#8A8A8A' } },
+      y: { title: { display: true, text: 'Error (eV)', font: { family: "'DM Sans'", size: 11 }, color: '#8A8A8A' }, grid: { color: '#EDEAE5' }, ticks: { font: { family: "'DM Sans'", size: 10 }, color: '#8A8A8A' }, min: 0.01, max: 0.05 }
+    }
+  };
+
+  const barOpts = {
+    indexAxis: 'y', responsive: false,
+    animation: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Top 6 Feature Importances (XGBR)', font: { family: "'DM Sans'", size: 13, weight: '500' }, color: '#1A1A1A', padding: { bottom: 8 }},
+      tooltip: { backgroundColor: 'rgba(26,26,26,0.9)', titleFont: { family: "'DM Sans'" }, bodyFont: { family: "'DM Sans'" }, padding: 10, cornerRadius: 6,
+        callbacks: { label: function(ctx){ return (ctx.raw*100).toFixed(0)+'% importance'; }}
+      }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Relative Importance', font: { family: "'DM Sans'", size: 11 }, color: '#8A8A8A' }, grid: { color: '#EDEAE5' }, ticks: { font: { family: "'DM Sans'", size: 10 }, color: '#8A8A8A', callback: function(v){ return (v*100)+'%'; }}, max: 0.5 },
+      y: { grid: { display: false }, ticks: { font: { family: "'DM Sans'", size: 11, weight: '500' }, color: '#1A1A1A' }}
+    }
+  };
+
+  const barData = [0.40, 0.24, 0.08, 0.08, 0.07, 0.06];
+  const barColors = [copper, copper+'CC', copper+'99', copper+'77', copper+'55', copper+'44'];
+
+  function initCharts() {
+    if (lineChart) lineChart.destroy();
+    if (barChart) barChart.destroy();
+
+    lineChart = new Chart(document.getElementById('chart-feature-reduction'), {
+      type: 'line',
+      data: {
+        labels: lineShared.labels,
+        datasets: [
+          { ...lineShared.datasets[0], data: Array(10).fill(null) },
+          { ...lineShared.datasets[1], data: Array(10).fill(null) }
+        ]
+      },
+      options: lineOpts
+    });
+
+    barChart = new Chart(document.getElementById('chart-feature-importance'), {
+      type: 'bar',
+      data: {
+        labels: ['N_VE avg', 'N_VE₁−N_VE₂', 'r₁−r₂', 'IE avg', 'r avg', 'EA₁−EA₂'],
+        datasets: [{ label: 'Importance', data: [0,0,0,0,0,0], backgroundColor: barColors, borderRadius: 4, borderSkipped: false }]
+      },
+      options: barOpts
+    });
+  }
+
+  function animateCharts() {
+    initCharts();
+    const n = featureData.rmse.length;
+
+    for (let i = 0; i < n; i++) {
+      setTimeout(() => {
+        lineChart.data.datasets[0].data[i] = featureData.rmse[i];
+        lineChart.data.datasets[1].data[i] = featureData.mae[i];
+        lineChart.update('none');
+      }, i * delay);
+    }
+
+    for (let i = 0; i < barData.length; i++) {
+      const target = barData[i];
+      const start = n * delay + 200 + i * 200;
+      const steps = 12;
+      for (let s = 1; s <= steps; s++) {
+        setTimeout(() => {
+          const ease = 1 - Math.pow(1 - s/steps, 3);
+          barChart.data.datasets[0].data[i] = target * ease;
+          barChart.update('none');
+        }, start + s * 25);
+      }
+    }
+  }
+
+  initCharts();
+  onSlideEnter(7, animateCharts);
+})();
+
+// ── Slide 9: Interactive heatmap ──
+(function(){
+  const adsorbates = ['O','OH','N','NH','NH2','NH3','C','CH','CH2','CH3','S','SH','SH2','F','Cl','Br','I'];
+  const n = adsorbates.length;
+  const raw = [["O","O",1.5082],["O","OH",0.3048],["O","N",2.0098],["O","NH",1.9108],["O","NH2",0.5853],["O","NH3",-0.0119],["O","C",2.3618],["O","CH",1.6882],["O","CH2",1.2074],["O","CH3",0.4193],["O","S",1.8505],["O","SH",1.2054],["O","SH2",0.3411],["O","F",0.9175],["O","Cl",1.1282],["O","Br",0.9734],["O","I",0.6949],["OH","OH",-0.3102],["OH","N",0.7048],["OH","NH",0.6457],["OH","NH2",-0.2367],["OH","NH3",-0.7622],["OH","C",0.8805],["OH","CH",0.4648],["OH","CH2",0.1263],["OH","CH3",-0.2756],["OH","S",0.6403],["OH","SH",0.1597],["OH","SH2",-0.4177],["OH","F",-0.1276],["OH","Cl",0.0831],["OH","Br",-0.0717],["OH","I",-0.3502],["N","N",2.3854],["N","NH",2.0895],["N","NH2",1.2195],["N","NH3",0.4803],["N","C",2.6815],["N","CH",2.0879],["N","CH2",1.5905],["N","CH3",0.873],["N","S",2.3093],["N","SH",1.5929],["N","SH2",0.8175],["N","F",1.2983],["N","Cl",1.5091],["N","Br",1.3543],["N","I",1.0757],["NH","NH",1.7972],["NH","NH2",0.8988],["NH","NH3",0.3461],["NH","C",2.5065],["NH","CH",1.7979],["NH","CH2",1.3149],["NH","CH3",0.7096],["NH","S",2.2236],["NH","SH",1.4229],["NH","SH2",0.686],["NH","F",1.201],["NH","Cl",1.296],["NH","Br",1.1795],["NH","I",0.884],["NH2","NH2",-0.0747],["NH2","NH3",-0.6081],["NH2","C",1.3543],["NH2","CH",0.7795],["NH2","CH2",0.308],["NH2","CH3",-0.1576],["NH2","S",0.8675],["NH2","SH",0.3078],["NH2","SH2",-0.2857],["NH2","F",0.0345],["NH2","Cl",0.2453],["NH2","Br",0.0905],["NH2","I",-0.188],["NH3","NH3",-1.065],["NH3","C",0.6917],["NH3","CH",0.2327],["NH3","CH2",-0.1685],["NH3","CH3",-0.7081],["NH3","S",0.3375],["NH3","SH",-0.2021],["NH3","SH2",-0.7597],["NH3","F",-0.4875],["NH3","Cl",-0.2767],["NH3","Br",-0.4315],["NH3","I",-0.7101],["C","C",3.0283],["C","CH",2.2698],["C","CH2",1.9119],["C","CH3",1.1614],["C","S",2.5891],["C","SH",1.8823],["C","SH2",1.1025],["C","F",1.6483],["C","Cl",1.8591],["C","Br",1.7043],["C","I",1.4257],["CH","CH",1.596],["CH","CH2",1.0939],["CH","CH3",0.434],["CH","S",1.7994],["CH","SH",1.2122],["CH","SH2",0.4204],["CH","F",0.8736],["CH","Cl",1.0843],["CH","Br",0.9295],["CH","I",0.6509],["CH2","CH2",0.6063],["CH2","CH3",0.0102],["CH2","S",1.3118],["CH2","SH",0.736],["CH2","SH2",0.0105],["CH2","F",0.3804],["CH2","Cl",0.5912],["CH2","Br",0.4363],["CH2","I",0.1578],["CH3","CH3",-0.593],["CH3","S",0.696],["CH3","SH",0.1134],["CH3","SH2",-0.5626],["CH3","F",-0.2503],["CH3","Cl",-0.0395],["CH3","Br",-0.1944],["CH3","I",-0.4729],["S","S",1.7795],["S","SH",1.154],["S","SH2",0.3982],["S","F",0.9074],["S","Cl",1.1182],["S","Br",0.9634],["S","I",0.6849],["SH","SH",0.5295],["SH","SH2",-0.1478],["SH","F",0.2576],["SH","Cl",0.4684],["SH","Br",0.3135],["SH","I",0.035],["SH2","SH2",-0.7395],["SH2","F",-0.39],["SH2","Cl",-0.1793],["SH2","Br",-0.3341],["SH2","I",-0.6126],["F","F",0.0006],["F","Cl",0.2114],["F","Br",0.0566],["F","I",-0.222],["Cl","Cl",0.4222],["Cl","Br",0.2674],["Cl","I",-0.0112],["Br","Br",0.1125],["Br","I",-0.166],["I","I",-0.4445]];
+
+  const grid = Array.from({length:n}, ()=>Array(n).fill(null));
+  let vmin = Infinity, vmax = -Infinity;
+  raw.forEach(([a1,a2,v]) => {
+    const i = adsorbates.indexOf(a1), j = adsorbates.indexOf(a2);
+    if (i>=0 && j>=0) { grid[i][j] = v; grid[j][i] = v; vmin=Math.min(vmin,v); vmax=Math.max(vmax,v); }
+  });
+
+  function colorForValue(v) {
+    const t = (v - vmin) / (vmax - vmin);
+    if (t < 0.5) {
+      const s = t / 0.5;
+      return `rgb(${Math.round(74+s*(255-74))},${Math.round(140+s*(255-140))},${Math.round(111+s*(255-111))})`;
+    } else {
+      const s = (t - 0.5) / 0.5;
+      return `rgb(${Math.round(255-s*(255-184))},${Math.round(255-s*(255-92))},${Math.round(255-s*(255-92))})`;
+    }
+  }
+
+  const canvas = document.getElementById('chart-heatmap');
+  const ctx = canvas.getContext('2d');
+  const dpr = 2;
+  const pad = { top: 16, left: 80, right: 100, bottom: 90 };
+  const cellW = (canvas.width - pad.left - pad.right) / n;
+  const cellH = (canvas.height - pad.top - pad.bottom) / n;
+
+  function drawLabelsAndLegend() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.font = '500 '+Math.round(10*dpr)+'px "DM Sans"';
+    ctx.textAlign = 'center';
+
+    for (let i=0;i<n;i++) {
+      ctx.fillStyle = '#1A1A1A';
+      ctx.save(); ctx.translate(pad.left+i*cellW+cellW/2, pad.top+n*cellH+6*dpr); ctx.textBaseline='top'; ctx.fillText(adsorbates[i],0,0); ctx.restore();
+      ctx.save(); ctx.translate(pad.left-6*dpr, pad.top+i*cellH+cellH/2); ctx.textAlign='right'; ctx.textBaseline='middle'; ctx.fillText(adsorbates[i],0,0); ctx.restore();
+    }
+
+    const legendW = 14*dpr, legendH = canvas.height - pad.top - pad.bottom;
+    const lx = canvas.width - pad.right + 16*dpr;
+    for (let y=0;y<legendH;y++) {
+      const t = 1 - y/legendH;
+      const v = vmin + t*(vmax-vmin);
+      ctx.fillStyle = colorForValue(v);
+      ctx.fillRect(lx, pad.top+y, legendW, 1);
+    }
+    ctx.strokeStyle = '#DDD9D2'; ctx.strokeRect(lx, pad.top, legendW, legendH);
+    ctx.fillStyle = '#8A8A8A'; ctx.font = Math.round(10*dpr)+'px "DM Sans"'; ctx.textAlign = 'left';
+    ctx.fillText(vmax.toFixed(1)+' eV', lx+legendW+4*dpr, pad.top+8*dpr);
+    ctx.fillText(vmin.toFixed(1)+' eV', lx+legendW+4*dpr, pad.top+legendH);
+    ctx.fillText('0.0', lx+legendW+4*dpr, pad.top + legendH * (1 - (0-vmin)/(vmax-vmin)));
+
+    ctx.fillStyle = '#1A1A1A'; ctx.font = '500 '+Math.round(12*dpr)+'px "DM Sans"'; ctx.textAlign = 'center';
+    ctx.fillText('Predicted ΔG(C-C) across 17 adsorbate pairs', canvas.width/2, canvas.height - 10*dpr);
+  }
+
+  function drawCell(i, j) {
+    if (grid[i][j] === null) return;
+    ctx.fillStyle = colorForValue(grid[i][j]);
+    ctx.fillRect(pad.left+j*cellW, pad.top+i*cellH, cellW-1, cellH-1);
+  }
+
+  function drawAllCells() {
+    for (let i=0;i<n;i++) for (let j=0;j<=i;j++) drawCell(i,j);
+  }
+
+  function animateHeatmap() {
+    drawLabelsAndLegend();
+    const cells = [];
+    for (let j=0;j<n;j++) for (let i=j;i<n;i++) {
+      if (grid[i][j] !== null) cells.push([i,j]);
+    }
+    cells.forEach(([i,j], idx) => {
+      setTimeout(() => drawCell(i,j), idx * 18);
+    });
+  }
+
+  drawLabelsAndLegend();
+  drawAllCells();
+  onSlideEnter(8, animateHeatmap);
+
+  const tooltip = document.getElementById('heatmap-tooltip');
+  canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = 520 / rect.width, scaleY = 340 / rect.height;
+    const relX = (e.clientX - rect.left) * scaleX;
+    const relY = (e.clientY - rect.top) * scaleY;
+    const mx = relX / 520 * canvas.width;
+    const my = relY / 340 * canvas.height;
+    const j = Math.floor((mx - pad.left)/cellW), i = Math.floor((my - pad.top)/cellH);
+    if (i>=0 && i<n && j>=0 && j<=i && grid[i][j]!==null) {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = '<strong>'+adsorbates[i]+' + '+adsorbates[j]+'</strong><br>ΔG = '+grid[i][j].toFixed(4)+' eV';
+      tooltip.style.left = '620px';
+      tooltip.style.top = '55px';
+    } else { tooltip.style.display = 'none'; }
+  });
+  canvas.addEventListener('mouseleave', function(){ tooltip.style.display = 'none'; });
+})();
 </script>
 </body>
 </html>
