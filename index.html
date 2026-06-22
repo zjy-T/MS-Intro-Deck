@@ -216,15 +216,17 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .tl-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--copper); z-index: 1; }
 .slide.active .tl-item { opacity: 1; transform: translateY(0); }
 .slide.active .tl-item:nth-child(1) { transition-delay: 0.3s; }
-.slide.active .tl-item:nth-child(2) { transition-delay: 0.6s; }
-.slide.active .tl-item:nth-child(3) { transition-delay: 0.9s; }
-.slide.active .tl-item:nth-child(4) { transition-delay: 1.2s; }
-.slide.active .tl-item:nth-child(5) { transition-delay: 1.5s; }
-.slide.active .tl-item:nth-child(6) { transition-delay: 1.8s; }
-.slide.active .tl-item:nth-child(7) { transition-delay: 2.1s; }
+.slide.active .tl-item:nth-child(2) { transition-delay: 0.7s; }
+.slide.active .tl-item:nth-child(3) { transition-delay: 1.1s; }
+.slide.active .tl-item:nth-child(4) { transition-delay: 1.5s; }
+.slide.active .tl-item:nth-child(5) { transition-delay: 1.9s; }
 .tl-item .tl-year { font-family: var(--serif); font-size: 18px; color: var(--text); line-height: 1; margin-bottom: 2px; }
 .tl-item .tl-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
 .tl-item .tl-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px; }
+.tl-sub { position: relative; margin-top: 6px; padding-left: 16px; border-left: 1.5px solid var(--border); margin-left: 2px; }
+.tl-sub .tl-sub-title { font-size: 12.5px; font-weight: 500; color: var(--text-secondary); line-height: 1.3; }
+.tl-sub .tl-sub-title .tl-sub-year { font-family: var(--serif); font-size: 13px; color: var(--text-muted); margin-right: 4px; }
+.tl-sub .tl-sub-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; margin-top: 1px; }
 .tl-images { display: flex; gap: 6px; margin-top: 4px; align-items: center; }
 .tl-images .img-frame { border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
 .tl-images .img-frame img { display: block; height: 72px; width: auto; border-radius: 5px; }
@@ -407,7 +409,6 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <!-- 2. ABOUT ME -->
 <div class="slide top" data-section="Introduction">
   <h1 class="title-lg anim d1" style="font-size:36px;margin-bottom:4px;">Who Am I?</h1>
-  <p class="anim d2" style="font-size:15px;font-weight:500;color:var(--text-secondary);margin-top:-4px;margin-bottom:0;">Tony Zhang</p>
   <div class="v-timeline">
     <div class="tl-item">
       <div class="tl-year">2002</div>
@@ -415,34 +416,32 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
       <div class="tl-desc">Arrived in Calgary, Canada at the age of 8.</div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">2014</div>
-      <div class="tl-title">First Internship — Syncrude R&D</div>
-      <div class="tl-desc">Taught me I wasn't interested in oil & gas, but had a genuine interest in research.</div>
-      <div class="tl-images">
-        <div class="img-frame"><img src="slide 2/2014-1.jpg" alt="Syncrude R&D team"></div>
-        <div class="img-frame"><img src="slide 2/2014-2.jpg" alt="Syncrude office"></div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2018</div>
+      <div class="tl-year">2012–2018</div>
       <div class="tl-title">BASc. Chemical & Biological Engineering — UBC</div>
       <div class="tl-desc">Graduated and moved back to China to pursue grad school at Tsinghua University.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2019–2020</div>
-      <div class="tl-title">Covid Pivot</div>
-      <div class="tl-desc">Stuck in Canada during the height of Covid, unable to return to campus. Transitioned my project from experimental to computational. Self-taught coding and ML basics from online courses.</div>
-      <div class="tl-images">
-        <div class="img-frame"><img src="slide 2/2020-1.png" alt="Python for Everybody — Coursera"></div>
-        <div class="img-frame"><img src="slide 2/2020-2.png" alt="Applied Data Science — Coursera"></div>
-        <div class="img-frame"><img src="slide 2/2020-3.png" alt="Udacity certificate"></div>
-        <div class="img-frame"><img src="slide 2/2020-4.png" alt="Udacity certificate"></div>
-        <div class="img-frame"><img src="slide 2/2020-5.png" alt="Udacity certificate"></div>
+      <div class="tl-sub">
+        <div class="tl-sub-title"><span class="tl-sub-year">2014</span> 16 Month Internship — Syncrude R&D</div>
+        <div class="tl-sub-desc">Taught me I wasn't interested in oil & gas, but had a genuine interest in research.</div>
+        <div class="tl-images">
+          <div class="img-frame"><img src="slide 2/2014-1.jpg" alt="Syncrude R&D team"></div>
+          <div class="img-frame"><img src="slide 2/2014-2.jpg" alt="Syncrude office"></div>
+        </div>
       </div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">2021</div>
+      <div class="tl-year">2019–2021</div>
       <div class="tl-title">MSc. Computational Chemistry — Tsinghua University</div>
+      <div class="tl-sub">
+        <div class="tl-sub-title"><span class="tl-sub-year">2020</span> Covid Pivot</div>
+        <div class="tl-sub-desc">Stuck in Canada during Covid, unable to return to campus. Transitioned from experimental to computational. Self-taught coding and ML from online courses.</div>
+        <div class="tl-images">
+          <div class="img-frame"><img src="slide 2/2020-1.png" alt="Python for Everybody — Coursera"></div>
+          <div class="img-frame"><img src="slide 2/2020-2.png" alt="Applied Data Science — Coursera"></div>
+          <div class="img-frame"><img src="slide 2/2020-3.png" alt="Udacity certificate"></div>
+          <div class="img-frame"><img src="slide 2/2020-4.png" alt="Udacity certificate"></div>
+          <div class="img-frame"><img src="slide 2/2020-5.png" alt="Udacity certificate"></div>
+        </div>
+      </div>
     </div>
     <div class="tl-item">
       <div class="tl-year">2021–2025</div>
@@ -477,11 +476,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 5. ERA 1 PROBLEM -->
-<div class="slide top" data-section="Era 1 · The Numbers Game">
-  <div class="section-label anim d1">Era 1 · The Problem</div>
-  <h3 class="slide-title anim d2">The Science Problem</h3>
-  <p class="subtitle anim d3" style="margin-bottom:4px;white-space:nowrap;">Electrochemical CO₂ reduction (CO₂RR) converts atmospheric CO₂ into fuel products — but product quality depends entirely on the <span style="border-bottom:1.5px dashed var(--text-muted);cursor:help;" title="A catalyst is a material that speeds up a chemical reaction without being consumed — think of it as a matchmaker that decides which products get made.">catalyst</span>.</p>
-  <div class="two-col anim d4" style="margin-top:0;align-items:center;">
+<div class="slide top" data-section="Era 1 · The Numbers Game · The Science Problem">
+  <p class="subtitle anim d1" style="margin-bottom:4px;white-space:nowrap;">Electrochemical CO₂ reduction (CO₂RR) converts atmospheric CO₂ into fuel products — but product quality depends entirely on the <span style="border-bottom:1.5px dashed var(--text-muted);cursor:help;" title="A catalyst is a material that speeds up a chemical reaction without being consumed — think of it as a matchmaker that decides which products get made.">catalyst</span>.</p>
+  <div class="two-col anim d2" style="margin-top:0;align-items:center;">
     <div style="display:flex;flex-direction:column;gap:8px;">
       <div class="s5-item s5-good">
         <div class="s5-dot" style="background:#4A8C6F;"></div>
@@ -514,17 +511,15 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     </div>
     <img src="era 1/5-1.png" alt="CO₂ reduction reaction — product selectivity" style="width:100%;height:auto;border-radius:10px;">
   </div>
-  <div class="s5-goal anim d5" style="margin-top:8px;">
+  <div class="s5-goal anim d3" style="margin-top:8px;">
     <span style="font-weight:600;color:var(--blue);white-space:nowrap;">The Goal</span>
     <span style="color:var(--text-secondary);">Find which catalyst materials maximize high-value fuel production from CO₂.</span>
   </div>
 </div>
 
 <!-- 6. ERA 1 BOTTLENECK -->
-<div class="slide top" data-section="Era 1 · The Numbers Game">
-  <div class="section-label anim d1">Era 1 · The Bottleneck</div>
-  <h3 class="slide-title anim d2">Bottlenecking on Computation Resources and Performance</h3>
-  <div class="two-col anim d3" style="margin-top:12px;align-items:center;">
+<div class="slide top" data-section="Era 1 · The Numbers Game · The Bottleneck">
+  <div class="two-col anim d1" style="margin-top:12px;align-items:center;">
     <div>
       <ul class="s6-bullets">
         <li>Catalyst R&D typically involves computational simulations called "DFT calculations" before experimentation in a physical lab</li>
@@ -537,7 +532,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
       <img src="era 1/6-1.png" alt="From Theory to Discovery — DFT calculations to experimentation process" style="width:100%;height:auto;border-radius:10px;">
     </div>
   </div>
-  <div class="stat-row anim d4" style="margin-top:16px;">
+  <div class="stat-row anim d2" style="margin-top:16px;">
     <div class="stat-card accent"><div class="number">289</div><div class="label">Catalyst candidates</div></div>
     <div class="stat-card accent"><div class="number">~2 Days</div><div class="label">Per DFT calculation</div></div>
     <div class="stat-card accent"><div class="number">~$1200</div><div class="label">Per catalyst candidate</div></div>
@@ -546,11 +541,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 7. ERA 1 ML APPROACH -->
-<div class="slide top" data-section="Era 1 · The Numbers Game">
-  <div class="section-label anim d1">Era 1 · The Approach</div>
-  <h3 class="slide-title anim d2">The AI-for-Science Approach</h3>
-  <p class="subtitle anim d3" style="margin-bottom:6px;">Train a regression algorithm on catalyst data to predict DFT results directly.</p>
-  <div class="anim d4" style="overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);">
+<div class="slide top" data-section="Era 1 · The Numbers Game · The Approach">
+  <p class="subtitle anim d1" style="margin-bottom:6px;">Train a regression algorithm on catalyst data to predict DFT results directly.</p>
+  <div class="anim d2" style="overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);">
     <div style="height:380px;overflow:auto;" id="s7-table-wrap">
       <table id="s7-table" style="width:max-content;min-width:100%;border-collapse:collapse;font-size:10px;font-family:var(--sans);">
         <thead style="position:sticky;top:0;z-index:1;" id="s7-thead"></thead>
@@ -571,10 +564,8 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 8. ERA 1 FEATURES -->
-<div class="slide top" data-section="Era 1 · The Numbers Game">
-  <div class="section-label anim d1">Era 1 · Model Tuning</div>
-  <h3 class="slide-title anim d2">Optimizing Through Feature Reduction</h3>
-  <div class="two-col anim d3" style="margin-top:12px;align-items:stretch;">
+<div class="slide top" data-section="Era 1 · The Numbers Game · Feature Reduction">
+  <div class="two-col anim d1" style="margin-top:12px;align-items:stretch;">
     <div style="display:flex;flex-direction:column;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;">
         <canvas id="chart-feature-reduction" width="520" height="340"></canvas>
@@ -591,24 +582,22 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 9. ERA 1 RESULTS -->
-<div class="slide top" data-section="Era 1 · The Numbers Game">
-  <div class="section-label anim d1">Era 1 · The Results</div>
-  <h3 class="slide-title anim d2" style="margin-bottom:6px;">The Results — Highly Accelerated and Accurate</h3>
-  <div class="anim d3" style="position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;display:flex;justify-content:center;">
+<div class="slide top" data-section="Era 1 · The Numbers Game · The Results">
+  <div class="anim d1" style="position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;display:flex;justify-content:center;">
     <canvas id="chart-heatmap" width="1040" height="680" style="display:block;cursor:crosshair;width:520px;height:340px;"></canvas>
     <div id="heatmap-tooltip" style="display:none;position:absolute;background:rgba(26,26,26,0.9);color:white;padding:8px 12px;border-radius:6px;font-size:12px;pointer-events:none;z-index:10;white-space:nowrap;"></div>
   </div>
-  <div class="anim d4" style="display:flex;gap:8px;margin-top:8px;">
+  <div class="anim d2" style="display:flex;gap:8px;margin-top:8px;">
     <div class="stat-card accent s9-card" style="--card-delay:0.4s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">100,000×</div><div class="label" style="font-size:9px;">Speed vs DFT</div></div>
     <div class="stat-card accent s9-card" style="--card-delay:0.5s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">$150K</div><div class="label" style="font-size:9px;">Cost saved</div></div>
     <div class="stat-card accent s9-card" style="--card-delay:0.6s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">94%</div><div class="label" style="font-size:9px;">Accuracy vs DFT</div></div>
     <div class="stat-card accent s9-card" style="--card-delay:0.7s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">80</div><div class="label" style="font-size:9px;">Candidates found</div></div>
     <div class="stat-card accent s9-card" style="--card-delay:0.8s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">215%</div><div class="label" style="font-size:9px;">vs current standard</div></div>
   </div>
-  <div class="anim d5" style="margin-top:8px;font-size:13px;color:var(--text-secondary);line-height:1.5;">
+  <div class="anim d3" style="margin-top:8px;font-size:13px;color:var(--text-secondary);line-height:1.5;">
     <strong style="color:var(--blue);">Summary:</strong> Our model reduced screening time from years to seconds, saving over $150K while maintaining 94% accuracy. We identified a catalyst with 215% performance increase over the current best. AI as a calculator — narrow and specialized, but it turned a years-long problem into an instantaneous one.
   </div>
-  <p class="anim d5" style="font-size:11px;color:var(--text-muted);margin-top:4px;text-align:right;">Published in <em>J. Phys. Chem. C</em> 2021, 125, 28, 15363–15372</p>
+  <p class="anim d3" style="font-size:11px;color:var(--text-muted);margin-top:4px;text-align:right;">Published in <em>J. Phys. Chem. C</em> 2021, 125, 28, 15363–15372</p>
 </div>
 
 <!-- 10. ERA 2 SECTION -->
@@ -622,41 +611,62 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 11. ERA 2 CONTEXT -->
-<div class="slide top" data-section="Era 2 · Computer Vision">
-  <div class="section-label anim d1">Era 2 · The Problem</div>
-  <h3 class="slide-title anim d2">The Business Context</h3>
-  <p class="anim d3" style="font-size:16px;color:var(--text);line-height:1.7;margin-top:8px;"><strong>Cosmetic Medicine</strong> is a specialized branch of medicine focused on enhancing a patient's appearance — both surgically and non-surgically. It includes procedures like skin treatments, injectables, laser therapy, and plastic surgery.</p>
-  <div class="anim d4" style="margin-top:16px;">
+<div class="slide top" data-section="Era 2 · Computer Vision · The Business Context">
+  <p class="anim d1" style="font-family:var(--serif);font-size:19px;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-top:6px;"><strong style="font-style:normal;color:var(--text);">Cosmetic Medicine</strong> — enhancing appearance through surgical and non-surgical procedures: skin treatments, injectables, laser therapy, and more.</p>
+  <div class="anim d2" style="margin-top:16px;">
     <ul class="bullet-list">
       <li style="font-size:16px;">One of Meituan's <strong style="color:var(--text);">most profitable</strong> and also most expensive verticals</li>
       <li style="font-size:16px;">App data confirmed users have <strong style="color:var(--text);">high intent but low conversion</strong> — users browse extensively but don't purchase</li>
       <li style="font-size:16px;margin-bottom:8px;">Users face the <strong style="color:var(--text);">highest barrier to entry</strong> of any industry on Meituan:</li>
     </ul>
     <div style="display:flex;gap:12px;margin-left:18px;">
-      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High average product cost</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Average order price of 1200 RMB</div></div>
-      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High perceived medical risk</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Users worry about disfigurement</div></div>
-      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High domain knowledge requirement</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">"Which procedure best suits my needs?"<br>"What's the difference between A vs. B?"</div></div>
+      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.5s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High average product cost</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Average order price of 1200 RMB</div></div>
+      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.7s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High perceived medical risk</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Users worry about disfigurement</div></div>
+      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.9s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High domain knowledge requirement</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">"Which procedure best suits my needs?"<br>"What's the difference between A vs. B?"</div></div>
     </div>
   </div>
-  <div class="callout anim d5" style="margin-top:18px;border-left-color:var(--era2);">
-    <strong style="color:var(--text);">The challenge:</strong> How do you get users confident enough to convert when the stakes feel high and the knowledge gap is wide?<br><br>
-    <strong style="color:var(--era2);">Our approach:</strong> Use AI to lower the user's barrier to entry — give users a quick, private and personalized skin analysis report powered by computer vision, with treatment and procedure recommendations all from the comfort of their home.
+  <div class="callout anim d3" style="margin-top:40px;border-left-color:var(--era2);padding:18px 22px;">
+    <strong style="color:var(--text);">The challenge:</strong> How do you get users confident enough to convert when the stakes feel high and the knowledge gap is wide?<br>
+    <strong style="color:var(--era2);">Our approach:</strong> Give users a quick, private, personalized skin analysis report powered by computer vision — with treatment recommendations from the comfort of their home.
   </div>
 </div>
 
-<!-- 13. ERA 2 SKIN ANALYSIS -->
-<div class="slide top" data-section="Era 2 · Computer Vision">
-  <div class="section-label anim d1">Era 2 · The Product</div>
-  <h3 class="slide-title anim d2">AI Skin Analysis</h3>
-  <p class="subtitle anim d3" style="margin-bottom:14px;">Three steps. No doctor required.</p>
-  <div class="skin-steps anim d4">
-    <div class="skin-step"><div class="step-circle">1</div><div class="step-name">Take a Selfie</div><div class="step-sub">Camera captures facial image for CV analysis</div></div>
-    <div class="skin-step"><div class="step-circle">2</div><div class="step-name">Fill Out Questionnaire</div><div class="step-sub">Personal context for tailored recommendations</div></div>
-    <div class="skin-step"><div class="step-circle">3</div><div class="step-name">Get Your Analysis</div><div class="step-sub">AI-powered assessment and product matching</div></div>
-  </div>
-  <div class="two-col anim d5" style="margin-top:16px;gap:20px;">
-    <div class="img-frame"><img src="meituan skin analysis/picture taking.jpg" alt="Taking photo" onerror="this.parentElement.outerHTML='<div class=img-placeholder style=min-height:200px><div><div style=font-size:28px;margin-bottom:8px>📸</div>Selfie Capture UI<br><span style=font-size:11px;color:var(--text-muted)>Face detection and guided capture</span></div></div>'"></div>
-    <div class="img-frame"><img src="meituan skin analysis/results.jpg" alt="Results" onerror="this.parentElement.outerHTML='<div class=img-placeholder style=min-height:200px><div><div style=font-size:28px;margin-bottom:8px>📊</div>AI Analysis Results<br><span style=font-size:11px;color:var(--text-muted)>Skin scoring and recommendations</span></div></div>'"></div>
+<!-- 12. ERA 2 SKIN ANALYSIS -->
+<div class="slide top" data-section="Era 2 · Computer Vision · AI Skin Analysis">
+  <p class="subtitle anim d1" style="margin-bottom:10px;">Three steps. No doctor required.</p>
+  <div style="display:flex;gap:0;flex:1;min-height:0;align-items:stretch;" class="anim d2">
+    <div style="flex:1;display:flex;flex-direction:column;min-height:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+      <div style="text-align:center;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--era2-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;color:var(--era2);flex-shrink:0;">1</div>
+          <div style="font-weight:500;font-size:14px;">Take a Selfie</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">Camera captures facial image for CV analysis</div>
+      </div>
+      <div style="flex:1;min-height:0;overflow:hidden;display:flex;align-items:start;border-radius:6px;"><img src="Era 2/1.jpg" alt="Selfie capture" style="width:100%;height:100%;object-fit:contain;object-position:top;display:block;"></div>
+    </div>
+    <div style="display:flex;align-items:center;flex-shrink:0;padding:0 6px;color:var(--era2);font-size:18px;">→</div>
+    <div style="flex:1;display:flex;flex-direction:column;min-height:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+      <div style="text-align:center;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--era2-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;color:var(--era2);flex-shrink:0;">2</div>
+          <div style="font-weight:500;font-size:14px;">Fill Out Questionnaire</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">Personal context for tailored recommendations</div>
+      </div>
+      <div style="flex:1;min-height:0;overflow:hidden;display:flex;align-items:start;border-radius:6px;"><img src="Era 2/2.jpg" alt="Questionnaire" style="width:100%;height:100%;object-fit:contain;object-position:top;display:block;"></div>
+    </div>
+    <div style="display:flex;align-items:center;flex-shrink:0;padding:0 6px;color:var(--era2);font-size:18px;">→</div>
+    <div style="flex:1;display:flex;flex-direction:column;min-height:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+      <div style="text-align:center;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--era2-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;color:var(--era2);flex-shrink:0;">3</div>
+          <div style="font-weight:500;font-size:14px;">Get Your Analysis</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.4;">AI-powered report with product matching</div>
+      </div>
+      <div style="flex:1;min-height:0;overflow-y:auto;border-radius:6px;"><img src="Era 2/3.jpg" alt="Analysis report" style="width:100%;height:auto;display:block;"></div>
+    </div>
   </div>
 </div>
 
