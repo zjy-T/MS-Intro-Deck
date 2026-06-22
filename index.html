@@ -670,6 +670,19 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   </div>
 </div>
 
+<!-- 13. HOW WE BUILT IT -->
+<div class="slide top" data-section="Era 2 · Computer Vision · How We Built It">
+  <p class="subtitle anim d1" style="margin-bottom:10px;">The Complete Build Flow of an AI App from a PM's Perspective</p>
+  <div class="anim d2" style="flex:1;min-height:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);position:relative;cursor:grab;user-select:none;" id="figjam-viewer">
+    <img id="figjam-img" src="Era 2/AI Skin Analysis Build Flow.png" alt="AI Skin Analysis Build Flow" style="position:absolute;top:50%;left:50%;transform-origin:0 0;transform:translate(-50%,-50%) scale(1);width:95%;height:auto;">
+    <div style="position:absolute;bottom:10px;right:12px;display:flex;gap:6px;z-index:2;">
+      <button onclick="figjamZoom(1)" style="width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">+</button>
+      <button onclick="figjamZoom(-1)" style="width:32px;height:32px;border-radius:6px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">−</button>
+      <button onclick="figjamReset()" style="height:32px;padding:0 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;">Reset</button>
+    </div>
+  </div>
+</div>
+
 <!-- 14. ERA 3 SECTION -->
 <div class="slide dark-slide copper-dark centered" data-section="Era 3 · The Agentic Era">
   <span class="era-label anim d1" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);">Era Three · 2025–Now</span>
@@ -1202,6 +1215,44 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     } else { tooltip.style.display = 'none'; }
   });
   canvas.addEventListener('mouseleave', function(){ tooltip.style.display = 'none'; });
+})();
+
+// FigJam pan/zoom viewer
+(function(){
+  const viewer = document.getElementById('figjam-viewer');
+  const img = document.getElementById('figjam-img');
+  if (!viewer || !img) return;
+  let scale = 1, panX = 0, panY = 0, dragging = false, startX, startY, startPanX, startPanY;
+  function updateTransform() {
+    img.style.transform = 'translate(calc(-50% + '+panX+'px), calc(-50% + '+panY+'px)) scale('+scale+')';
+  }
+  viewer.addEventListener('mousedown', function(e) {
+    if (e.target.tagName === 'BUTTON') return;
+    dragging = true; startX = e.clientX; startY = e.clientY;
+    startPanX = panX; startPanY = panY;
+    viewer.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!dragging) return;
+    panX = startPanX + (e.clientX - startX);
+    panY = startPanY + (e.clientY - startY);
+    updateTransform();
+  });
+  window.addEventListener('mouseup', function() {
+    dragging = false; viewer.style.cursor = 'grab';
+  });
+  viewer.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    scale = Math.max(0.5, Math.min(5, scale + (e.deltaY > 0 ? -0.15 : 0.15)));
+    updateTransform();
+  }, {passive: false});
+  window.figjamZoom = function(dir) {
+    scale = Math.max(0.5, Math.min(5, scale + dir * 0.3));
+    updateTransform();
+  };
+  window.figjamReset = function() {
+    scale = 1; panX = 0; panY = 0; updateTransform();
+  };
 })();
 
 

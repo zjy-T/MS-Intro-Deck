@@ -4,7 +4,7 @@ Use this file to onboard any AI assistant (GitHub Copilot, Claude, etc.) to this
 
 ## What is this?
 
-A 22-slide interactive HTML presentation deck for a Microsoft intro talk on June 26, 2026. The talk is titled **"From Predicting a Single Number to Agentic Coding"** and covers Tony's 6-year journey building with AI across three eras.
+A 23-slide interactive HTML presentation deck for a Microsoft intro talk on June 26, 2026. The talk is titled **"From Predicting a Single Number to Agentic Coding"** and covers Tony's 6-year journey building with AI across three eras.
 
 Everything lives in a single file: `index.html` (HTML + CSS + JS).
 
@@ -16,8 +16,12 @@ Everything lives in a single file: `index.html` (HTML + CSS + JS).
 | 2 | — | "Who Am I?" timeline | Done |
 | 3 | — | Three-era overview cards | Done |
 | 4–9 | Era 1: "The Numbers Game" | ML for catalyst prediction (undergrad research) | Done |
-| 10–15 | Era 2: "The Language Leap" | NLP/LLMs, fine-tuning, RAG | Placeholder — build next |
-| 16–22 | Era 3: "The Agentic Frontier" | Agentic coding, MCP, current work | Placeholder |
+| 10 | Era 2: "Computer Vision" | Section opener | Done |
+| 11 | Era 2 | Business context — cosmetic medicine at Meituan | Done |
+| 12 | Era 2 | AI Skin Analysis — 3-step product walkthrough with screenshots | Done |
+| 13 | Era 2 | How We Built It — pannable/zoomable FigJam build flow | Done |
+| 14–20 | Era 3: "The Agentic Era" | Agentic coding, vibe-coding exercises | Placeholder — build next |
+| 21–23 | Looking Forward / Thank You | Wrap-up | Placeholder |
 
 ## Technical architecture
 
@@ -51,6 +55,12 @@ Everything lives in a single file: `index.html` (HTML + CSS + JS).
 
 ## What to build next
 
-**Era 2 (slides 10–15)** — "The Language Leap". This era covers Tony's work with NLP, large language models, fine-tuning, and RAG systems. The existing placeholder slides in `index.html` (slides 10–15) have scaffold content that needs to be rebuilt with the same quality and interactivity as Era 1.
+**Era 3 (slides 14–20)** — "The Agentic Era". This era covers Tony's personal vibe-coding exercises and agentic coding work. The existing placeholder slides in `index.html` have scaffold content that needs to be rebuilt with the same quality and interactivity as Era 1 and Era 2.
 
-Look at slides 4–9 in the code for the patterns and quality bar to match.
+Look at slides 4–13 in the code for the patterns and quality bar to match.
+
+### Era 2 design notes (for reference)
+- Section indicator format: "Era X · Theme · Slide Name" in top-left corner (consolidated, no separate slide titles)
+- Slide 11: single-column layout with bullet list, barrier cards (staggered animation), and callout box
+- Slide 12: three step-cards with arrows, product screenshots, scrollable report in step 3
+- Slide 13: local PNG with custom pan/zoom viewer (drag, scroll-wheel, +/−/Reset buttons) — avoids slow Figma iframe embeds

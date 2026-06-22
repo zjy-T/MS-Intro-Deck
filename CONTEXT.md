@@ -7,18 +7,27 @@ A 45-minute internal presentation for product managers and engineers at Microsof
 **Tony Zhang** — Product Manager, Edge Mobile @ Microsoft.
 Previously PM at Meituan (Healthcare). MSc Tsinghua (Computational Chemistry), BSc UBC (Chemical Engineering).
 
-## Presentation Structure (25 slides planned)
+## Presentation Structure (23 slides)
 
 | # | Slide | Section | Type | Status |
 |---|-------|---------|------|--------|
 | 1 | Title — "From Predicting a Single Number to Agentic Coding" | Introduction | Hero (photo bg) | ✅ Done |
 | 2 | Who Am I? — Personal timeline with photos/certs | Introduction | Light | ✅ Done |
 | 3 | Six Years of Building With AI (3-era cards) | Introduction | Light | ✅ Done |
-| 4–10 | Era 1 — "The Numbers Game" (7 slides) | Era 1 | Mixed | ❌ Not started |
-| 11–13 | Era 2 — "Teaching Machines to See" (3 slides) | Era 2 | Mixed | ❌ Not started |
-| 14–20 | Era 3 — "The Agentic Era" (7 slides) | Era 3 | Mixed | ❌ Not started |
-| 21–24 | Looking Forward (4 slides) | Looking Forward | Mixed | ❌ Not started |
-| 25 | Thank You | Looking Forward | Dark (copper) | ❌ Not started |
+| 4 | Era 1 Section Opener — "The Numbers Game" | Era 1 | Dark (blue) | ✅ Done |
+| 5 | The Science Problem — CO₂ reduction | Era 1 | Light | ✅ Done |
+| 6 | The Bottleneck — DFT cost breakdown | Era 1 | Light | ✅ Done |
+| 7 | The Approach — ML model comparison | Era 1 | Light | ✅ Done |
+| 8 | Feature Reduction — dual Chart.js charts | Era 1 | Light | ✅ Done |
+| 9 | The Results — heatmap with waterfall animation | Era 1 | Light | ✅ Done |
+| 10 | Era 2 Section Opener — "Computer Vision" | Era 2 | Dark (era2) | ✅ Done |
+| 11 | The Business Context — cosmetic medicine at Meituan | Era 2 | Light | ✅ Done |
+| 12 | AI Skin Analysis — 3-step product walkthrough | Era 2 | Light | ✅ Done |
+| 13 | How We Built It — FigJam build flow with pan/zoom viewer | Era 2 | Light | ✅ Done |
+| 14 | Era 3 Section Opener — "The Agentic Era" | Era 3 | Dark (copper) | ❌ Not started |
+| 15–20 | Era 3 slides | Era 3 | Mixed | ❌ Not started |
+| 21–22 | Looking Forward | Looking Forward | Mixed | ❌ Not started |
+| 23 | Thank You | Looking Forward | Dark (copper) | ❌ Not started |
 
 ## Design System
 
