@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Predicting a Single Number to Agentic Coding — Tony Zhang</title>
+<title>From Predicting a Single Number to Working Alongside Agents — Tony Zhang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -352,6 +352,34 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 16px;
 }
 
+/* Era 2 hero slide */
+.slide.era2-hero {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(8,20,40,0) 40%, rgba(4,10,20,0.6) 100%),
+    linear-gradient(to right, rgba(8,18,38,1) 0%, rgba(8,18,38,0.95) 25%, rgba(8,18,38,0.5) 50%, rgba(8,18,38,0) 100%),
+    url('Era 2/bg-face-mesh.jpg') center center/cover no-repeat;
+  background-color: #081226;
+  justify-content: flex-start; padding-top: 120px; text-align: left;
+  position: relative; overflow: hidden;
+}
+.era2-hero-label {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #7EB8D8; margin-bottom: 16px;
+}
+.era2-hero-title {
+  font-family: var(--serif); font-size: 64px; font-weight: 400;
+  line-height: 1.12; letter-spacing: -0.025em; color: rgba(255,255,255,0.95); max-width: 700px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+}
+.era2-hero-divider {
+  width: 56px; height: 2px; background: #7EB8D8; margin: 24px 0; opacity: 0.6;
+}
+.era2-hero-sub {
+  font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.08em;
+}
+.era2-hero-meta {
+  font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 16px;
+}
 /* Responsive media query removed — deck uses fixed 1280×720 canvas with uniform scaling */
 </style>
 </head>
@@ -370,9 +398,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 <!-- 1. TITLE -->
 <div class="slide dark-slide hero-slide" data-section="Introduction">
-  <h1 class="hero-title anim d1">From Predicting a Single Number<br>to Agentic Coding</h1>
+  <h1 class="hero-title anim d1">From Predicting a Single Number<br>to Working Alongside Agents</h1>
   <div class="hero-divider anim d2"></div>
-  <p class="hero-sub anim d3">THE EVOLUTION OF AI, FROM MY PERSPECTIVE</p>
+  <p class="hero-sub anim d3">MY PERSONAL EXPERIENCE ON THE EVOLUTION OF AI ACROSS INDUSTRIES</p>
   <p class="hero-meta anim d4">Tony Zhang · June 26, 2026</p>
 </div>
 
@@ -434,7 +462,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   <p class="subtitle anim d3" style="margin-bottom:4px; white-space:nowrap;">Three eras, each fundamentally different in what AI could do — and what I could build with it.</p>
   <div class="timeline-row">
     <div class="timeline-card anim d4"><div class="era-num">Era 1</div><div class="era-years">2018–2021</div><div class="era-title">The Numbers Game</div><div class="era-desc">ML as a research tool — predict one number to accelerate catalyst discovery. AI as a calculator.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 1.png" alt="CO₂ reduction heatmap"></div></div>
-    <div class="timeline-card anim d5"><div class="era-num">Era 2</div><div class="era-years">2021–2023</div><div class="era-title">Teaching Machines to See</div><div class="era-desc">Computer vision enters consumer products — AI-powered skin analysis serving millions of users.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 2.png" alt="Meituan skin analysis app"></div></div>
+    <div class="timeline-card anim d5"><div class="era-num">Era 2</div><div class="era-years">2021–2025</div><div class="era-title">Teaching Machines to See</div><div class="era-desc">Computer vision enters consumer products — AI-powered skin analysis serving millions of users.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 2.png" alt="Meituan skin analysis app"></div></div>
     <div class="timeline-card anim d6"><div class="era-num">Era 3</div><div class="era-years">2025–Now</div><div class="era-title">The Agentic Era</div><div class="era-desc">Ship full products without writing code — vibe coding and autonomous agents change everything.</div><div class="era-img-wrap"><img class="era-img" src="slide 3/era 3.png" alt="Edge Mobile demo"></div></div>
   </div>
 </div>
@@ -584,38 +612,35 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 10. ERA 2 SECTION -->
-<div class="slide tinted-era2 centered" data-section="Era 2 · Computer Vision">
-  <span class="era-label era2-label anim d1">Era Two · 2021–2023</span>
-  <h1 class="title-lg anim d2" style="color:var(--era2);">Teaching Machines to See</h1>
-  <p class="subtitle anim d3">Computer Vision Enters Consumer Products</p>
-  <p class="anim d4" style="color:var(--text-muted);font-size:13px;margin-top:10px;">Meituan · Healthcare Division</p>
-  <div style="margin-top:28px;display:flex;gap:32px;justify-content:center;" class="anim d5">
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:var(--era2);">CV</span><br><span style="font-size:12px;color:var(--text-secondary);">Computer Vision</span></div>
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:var(--era2);">B2C</span><br><span style="font-size:12px;color:var(--text-secondary);">Consumer facing</span></div>
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:var(--era2);">Scale</span><br><span style="font-size:12px;color:var(--text-secondary);">Millions of users</span></div>
-  </div>
+<!-- 10. ERA 2 OPENER -->
+<div class="slide dark-slide era2-hero" data-section="Era 2 · Computer Vision">
+  <span class="era2-hero-label anim d1">Era Two · 2021–2025</span>
+  <h1 class="era2-hero-title anim d2">Teaching Machines<br>to See</h1>
+  <div class="era2-hero-divider anim d3"></div>
+  <p class="era2-hero-sub anim d4">COMPUTER VISION FOR CONSUMER PRODUCTS</p>
+  <p class="era2-hero-meta anim d5">Meituan · Healthcare Division</p>
 </div>
 
-<!-- 12. ERA 2 CONTEXT -->
+<!-- 11. ERA 2 CONTEXT -->
 <div class="slide top" data-section="Era 2 · Computer Vision">
-  <div class="section-label anim d1">Era 2 · The Business Context</div>
-  <h3 class="slide-title anim d2">Cosmetic Medicine at Meituan</h3>
-  <div class="two-col anim d3" style="margin-top:12px;">
-    <div>
-      <p style="font-size:15px;color:var(--text-secondary);line-height:1.65;margin-bottom:14px;">Cosmetic medicine — one of Meituan's most profitable verticals. Users had <strong>high intent but low conversion</strong>.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--copper-bg);border-radius:8px;font-size:14px;border-left:3px solid var(--copper);">💰 High average transaction cost</div>
-        <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--copper-bg);border-radius:8px;font-size:14px;border-left:3px solid var(--copper);">⚕️ High perceived medical risk</div>
-        <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--copper-bg);border-radius:8px;font-size:14px;border-left:3px solid var(--copper);">🧠 High domain knowledge barrier</div>
-      </div>
+  <div class="section-label anim d1">Era 2 · The Problem</div>
+  <h3 class="slide-title anim d2">The Business Context</h3>
+  <p class="anim d3" style="font-size:16px;color:var(--text);line-height:1.7;margin-top:8px;"><strong>Cosmetic Medicine</strong> is a specialized branch of medicine focused on enhancing a patient's appearance — both surgically and non-surgically. It includes procedures like skin treatments, injectables, laser therapy, and plastic surgery.</p>
+  <div class="anim d4" style="margin-top:16px;">
+    <ul class="bullet-list">
+      <li style="font-size:16px;">One of Meituan's <strong style="color:var(--text);">most profitable</strong> and also most expensive verticals</li>
+      <li style="font-size:16px;">App data confirmed users have <strong style="color:var(--text);">high intent but low conversion</strong> — users browse extensively but don't purchase</li>
+      <li style="font-size:16px;margin-bottom:8px;">Users face the <strong style="color:var(--text);">highest barrier to entry</strong> of any industry on Meituan:</li>
+    </ul>
+    <div style="display:flex;gap:12px;margin-left:18px;">
+      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High average product cost</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Average order price of 1200 RMB</div></div>
+      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High perceived medical risk</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Users worry about disfigurement</div></div>
+      <div style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High domain knowledge requirement</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">"Which procedure best suits my needs?"<br>"What's the difference between A vs. B?"</div></div>
     </div>
-    <div>
-      <div class="callout" style="margin-top:0;border-left-color:var(--era2);"><strong>The core challenge:</strong> How do you get users confident enough to convert when the stakes feel high and the knowledge gap is wide?</div>
-      <div style="margin-top:14px;background:var(--era2-bg);border-radius:10px;padding:20px;text-align:center;">
-        <div style="font-size:12px;color:var(--era2);font-weight:500;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Solution Approach</div>
-        <div style="font-size:15px;color:var(--text);">Use AI to <strong>lower the knowledge barrier</strong> — give users a free, instant skin analysis before they commit.</div>
-      </div>
-    </div>
+  </div>
+  <div class="callout anim d5" style="margin-top:18px;border-left-color:var(--era2);">
+    <strong style="color:var(--text);">The challenge:</strong> How do you get users confident enough to convert when the stakes feel high and the knowledge gap is wide?<br><br>
+    <strong style="color:var(--era2);">Our approach:</strong> Use AI to lower the user's barrier to entry — give users a quick, private and personalized skin analysis report powered by computer vision, with treatment and procedure recommendations all from the comfort of their home.
   </div>
 </div>
 
@@ -1168,6 +1193,8 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
   });
   canvas.addEventListener('mouseleave', function(){ tooltip.style.display = 'none'; });
 })();
+
+
 </script>
 </body>
 </html>
