@@ -382,6 +382,31 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .era2-hero-meta {
   font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 16px;
 }
+
+/* Era 3 hero slide */
+.slide.era3-hero {
+  background:
+    linear-gradient(to right, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.35) 40%, rgba(10,8,6,0.1) 65%, transparent 100%),
+    url('Era 3/vibe coding.jpg') center center/cover no-repeat;
+  background-color: #0A0806;
+  justify-content: flex-start; padding-top: 120px; text-align: left;
+}
+.era3-hero-label {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-bottom: 16px;
+}
+.era3-hero-title {
+  font-family: var(--serif); font-size: 64px; font-weight: 400;
+  line-height: 1.12; letter-spacing: -0.025em; color: rgba(255,255,255,0.95); max-width: 700px;
+  text-shadow: 0 2px 32px rgba(0,0,0,0.8), 0 1px 8px rgba(0,0,0,0.6);
+}
+.era3-hero-divider {
+  width: 56px; height: 2px; background: rgba(255,255,255,0.35); margin: 24px 0;
+}
+.era3-hero-sub {
+  font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.5; max-width: 520px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.5);
+}
 /* Responsive media query removed — deck uses fixed 1280×720 canvas with uniform scaling */
 </style>
 </head>
@@ -684,27 +709,21 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 14. ERA 3 SECTION -->
-<div class="slide dark-slide copper-dark centered" data-section="Era 3 · The Agentic Era">
-  <span class="era-label anim d1" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);">Era Three · 2025–Now</span>
-  <h1 class="title-lg anim d2">The Agentic Era</h1>
-  <p class="subtitle anim d3" style="color:rgba(255,255,255,0.65);">Personal Vibe-Coding Exercises</p>
-  <div style="margin-top:28px;display:flex;gap:32px;justify-content:center;" class="anim d4">
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:rgba(255,255,255,0.9);">NLP</span><br><span style="font-size:12px;color:rgba(255,255,255,0.5);">Natural language input</span></div>
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:rgba(255,255,255,0.9);">Code</span><br><span style="font-size:12px;color:rgba(255,255,255,0.5);">AI-generated output</span></div>
-    <div style="text-align:center;"><span style="font-family:var(--serif);font-size:28px;color:rgba(255,255,255,0.9);">Ship</span><br><span style="font-size:12px;color:rgba(255,255,255,0.5);">Production products</span></div>
-  </div>
+<div class="slide dark-slide era3-hero" data-section="Era 3 · The Agentic Era">
+  <span class="era3-hero-label anim d1">Era Three · 2025–Now</span>
+  <h1 class="era3-hero-title anim d2">The Agentic Era</h1>
+  <div class="era3-hero-divider anim d3"></div>
+  <p class="era3-hero-sub anim d4">Lessons from vibe coding in the wild</p>
 </div>
 
 <!-- 15. ERA 3 PARADIGM -->
-<div class="slide top" data-section="Era 3 · The Agentic Era">
-  <div class="section-label anim d1">Era 3 · The Shift</div>
-  <h3 class="slide-title anim d2">2025 Completely Changed the Game</h3>
-  <p class="subtitle anim d3" style="margin-bottom:14px;">Vibe coding is building software through natural-language conversation with AI — describing what you want clearly enough that the AI implements it.</p>
-  <div class="cmp-table anim d4">
+<div class="slide" data-section="Era 3 · The Agentic Era · Landscape Shift" style="justify-content:center;padding:48px 72px;">
+  <h3 class="slide-title anim d1" style="margin-bottom:16px;">Agents Completely Changed the Game</h3>
+  <p class="anim d2" style="font-size:16px;color:var(--text-secondary);line-height:1.65;margin-bottom:32px;max-width:100%;"><strong style="color:var(--copper);font-weight:600;">The "vibe" in vibe coding:</strong> it's 2 AM on a Saturday, you're three hours deep in a flow state, and by Sunday evening you've shipped a working product that would have taken a cross-functional team weeks to spec, design, and build.</p>
+  <div class="cmp-table anim d3">
     <div class="cmp-row" style="margin-bottom:0;"><div class="cmp-header yes">What It Is</div><div class="cmp-header no">What It Isn't</div></div>
-    <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> AI as the actual implementer, not just a copilot</div><div class="cmp-item"><span class="cross">✗</span> Hands-off magic — you still review every output</div></div>
-    <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> Removing the "I can't code" barrier for PMs</div><div class="cmp-item"><span class="cross">✗</span> Reliable for complex architecture alone</div></div>
-    <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> Faster prototypes, MVPs, demo-ready products</div><div class="cmp-item"><span class="cross">✗</span> A replacement for engineers at scale</div></div>
+    <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> Removing the "I can't code" barrier for non-developers</div><div class="cmp-item"><span class="cross">✗</span> Hands-off magic — you still review every output</div></div>
+    <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> Faster prototypes, MVPs, demo-ready products</div><div class="cmp-item"><span class="cross">✗</span> Predictable — each session is a different experience</div></div>
     <div class="cmp-row"><div class="cmp-item"><span class="check">✓</span> The bottleneck shifts to clarity of thought</div><div class="cmp-item"><span class="cross">✗</span> Free — the subscriptions add up fast</div></div>
   </div>
 </div>
