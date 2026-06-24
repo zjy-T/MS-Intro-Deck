@@ -211,7 +211,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 /* Vertical timeline */
 .v-timeline { position: relative; padding-left: 28px; margin-top: 12px; }
 .v-timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
-.tl-item { position: relative; margin-bottom: 6px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.tl-item { position: relative; margin-bottom: 16px; opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .tl-item:last-child { margin-bottom: 0; }
 .tl-item::before { content: ''; position: absolute; left: -25px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--copper); z-index: 1; }
 .slide.active .tl-item { opacity: 1; transform: translateY(0); }
@@ -501,7 +501,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 5. ERA 1 PROBLEM -->
-<div class="slide top" data-section="Era 1 · The Numbers Game · The Science Problem">
+<div class="slide" data-section="Era 1 · The Numbers Game · The Science Problem">
   <p class="subtitle anim d1" style="margin-bottom:4px;white-space:nowrap;">Electrochemical CO₂ reduction (CO₂RR) converts atmospheric CO₂ into fuel products — but product quality depends entirely on the <span style="border-bottom:1.5px dashed var(--text-muted);cursor:help;" title="A catalyst is a material that speeds up a chemical reaction without being consumed — think of it as a matchmaker that decides which products get made.">catalyst</span>.</p>
   <div class="two-col anim d2" style="margin-top:0;align-items:center;">
     <div style="display:flex;flex-direction:column;gap:8px;">
@@ -543,7 +543,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 6. ERA 1 BOTTLENECK -->
-<div class="slide top" data-section="Era 1 · The Numbers Game · The Bottleneck">
+<div class="slide" data-section="Era 1 · The Numbers Game · The Bottleneck">
   <div class="two-col anim d1" style="margin-top:12px;align-items:center;">
     <div>
       <ul class="s6-bullets">
@@ -566,7 +566,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 7. ERA 1 ML APPROACH -->
-<div class="slide top" data-section="Era 1 · The Numbers Game · The Approach">
+<div class="slide" data-section="Era 1 · The Numbers Game · The Approach">
   <p class="subtitle anim d1" style="margin-bottom:6px;">Train a regression algorithm on catalyst data to predict DFT results directly.</p>
   <div class="anim d2" style="overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);">
     <div style="height:380px;overflow:auto;" id="s7-table-wrap">
@@ -589,7 +589,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 8. ERA 1 FEATURES -->
-<div class="slide top" data-section="Era 1 · The Numbers Game · Feature Reduction">
+<div class="slide" data-section="Era 1 · The Numbers Game · Feature Reduction">
   <div class="two-col anim d1" style="margin-top:12px;align-items:stretch;">
     <div style="display:flex;flex-direction:column;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;">
@@ -607,7 +607,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 9. ERA 1 RESULTS -->
-<div class="slide top" data-section="Era 1 · The Numbers Game · The Results">
+<div class="slide" data-section="Era 1 · The Numbers Game · The Results">
   <div class="anim d1" style="position:relative;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;display:flex;justify-content:center;">
     <canvas id="chart-heatmap" width="1040" height="680" style="display:block;cursor:crosshair;width:520px;height:340px;"></canvas>
     <div id="heatmap-tooltip" style="display:none;position:absolute;background:rgba(26,26,26,0.9);color:white;padding:8px 12px;border-radius:6px;font-size:12px;pointer-events:none;z-index:10;white-space:nowrap;"></div>
@@ -636,7 +636,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 11. ERA 2 CONTEXT -->
-<div class="slide top" data-section="Era 2 · Computer Vision · The Business Context">
+<div class="slide" data-section="Era 2 · Computer Vision · The Business Context">
   <p class="anim d1" style="font-family:var(--serif);font-size:19px;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-top:6px;"><strong style="font-style:normal;color:var(--text);">Cosmetic Medicine</strong> — enhancing appearance through surgical and non-surgical procedures: skin treatments, injectables, laser therapy, and more.</p>
   <div class="anim d2" style="margin-top:16px;">
     <ul class="bullet-list">
@@ -729,36 +729,149 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 </div>
 
 <!-- 16. SHOWCASE 1 -->
-<div class="slide top" data-section="Era 3 · The Agentic Era">
-  <div class="section-label anim d1">Showcase 1</div>
-  <h3 class="slide-title anim d2">Edge Mobile Reimagined</h3>
-  <div class="two-col wide-left anim d3" style="margin-top:12px;">
+<div class="slide top" data-section="Era 3 · The Agentic Era · Showcase 1: Edge Mobile Reimagined">
+  <div class="two-col anim d1" style="margin-top:0;grid-template-columns:1fr 1fr;gap:36px;align-items:center;">
     <div>
-      <div class="callout copper-border" style="margin-top:0;margin-bottom:14px;">Started as an interview prompt from Mike: <em>"Pick one everyday mobile browsing experience and propose how Edge Mobile could use AI to improve it."</em></div>
+      <p style="font-size:15px;color:var(--text-secondary);line-height:1.65;margin-bottom:8px;"><strong style="color:var(--text);font-weight:600;">Started as an interview assignment from Mike:</strong></p>
+      <p style="font-size:15px;color:var(--text);line-height:1.65;margin-bottom:12px;font-style:italic;">"Pick one everyday mobile browsing experience and propose how Edge Mobile could use AI to improve it."</p>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+        <svg width="24" height="14" viewBox="0 0 24 14" style="flex-shrink:0;"><path d="M1 7h20M17 1l5 6-5 6" stroke="var(--copper)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span style="font-size:14px;color:var(--text-secondary);font-weight:500;">Which turned into a vibe coding project over Chinese New Years</span>
+      </div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--copper);margin-bottom:10px;">High Level Overview of Build</div>
       <div class="stat-row cols-2" style="margin-top:0;">
-        <div class="stat-card copper"><div class="number" style="font-size:24px;">Lovable</div><div class="label">Coding agent</div></div>
-        <div class="stat-card copper"><div class="number" style="font-size:24px;">~30 hrs</div><div class="label">Total build time</div></div>
-        <div class="stat-card copper"><div class="number" style="font-size:24px;">~$125</div><div class="label">Total cost (USD)</div></div>
-        <div class="stat-card copper"><div class="number" style="font-size:20px;font-family:var(--sans);font-weight:400;">edge-demo.info</div><div class="label">Live demo</div></div>
+        <div class="stat-card copper"><div class="number" style="font-size:22px;">Lovable</div><div class="label">Coding agent</div></div>
+        <div class="stat-card copper"><div class="number" style="font-size:22px;">Auto</div><div class="label">Model</div><div style="font-size:9px;color:var(--text-muted);line-height:1.3;margin-top:4px;">Lovable does not let you<br>customize the LLM</div></div>
+        <div class="stat-card copper"><div class="number" style="font-size:22px;">~30 hrs</div><div class="label">Total build time</div></div>
+        <div class="stat-card copper"><div class="number" style="font-size:22px;">~$125</div><div class="label">Cost (USD)</div></div>
+      </div>
+      <div style="margin-top:14px;font-size:13px;color:var(--text-muted);">edge-demo.info</div>
+    </div>
+    <div class="anim d2" style="display:flex;align-items:start;justify-content:center;padding-top:0;">
+      <div style="position:relative;width:290px;height:595px;overflow:hidden;background:transparent;border-radius:28px;">
+        <iframe src="https://edge-demo.info" style="position:absolute;top:-26px;left:-8px;width:460px;height:960px;border:none;transform:scale(0.64);transform-origin:top left;" scrolling="no" allow="autoplay"></iframe>
       </div>
     </div>
-    <div><div class="img-frame"><img src="screenshots/edge demo.png" alt="Edge demo" onerror="this.parentElement.outerHTML='<div class=img-placeholder style=min-height:340px><div><div style=font-size:32px;margin-bottom:8px>📱</div>Edge Mobile Demo<br><span style=font-size:11px;color:var(--text-muted)>AI-enhanced browsing prototype</span></div></div>'"></div></div>
   </div>
 </div>
 
 <!-- 17. BUILD FLOW -->
-<div class="slide top" data-section="Era 3 · The Agentic Era">
-  <div class="section-label anim d1">Showcase 1 · Build Process</div>
-  <h3 class="slide-title anim d2">The Iterative Build Flow</h3>
-  <div class="build-flow anim d3">
-    <div class="build-step"><div class="step-num">01</div><div class="step-title">Build the frontend shell</div><div class="step-desc">"Getting started is half the battle" — building the frontend first enables flow and gives you something tangible to iterate on.</div></div>
-    <div class="build-step"><div class="step-num">02</div><div class="step-title">Refine each element</div><div class="step-desc">First iteration will contain many mistakes. Take your time tackling each element individually. Patience pays off.</div></div>
-    <div class="build-step"><div class="step-num">03</div><div class="step-title">Develop the new feature</div><div class="step-desc">By now you're in the flow. Build the core innovation on top of the solid foundation you've established.</div></div>
+<div class="slide" data-section="Era 3 · The Agentic Era · Edge Demo Iterative Build Flow">
+  <div style="display:flex;flex-direction:column;align-items:center;width:100%;">
+    <!-- Step 3 — top / narrowest -->
+    <div class="anim d1" style="width:50%;background:var(--surface);border:1px solid var(--border);border-radius:10px 10px 0 0;padding:20px 28px;text-align:center;border-bottom:none;position:relative;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;">
+        <span style="font-family:var(--serif);font-size:24px;color:var(--copper);">03</span>
+        <span style="font-weight:600;font-size:16px;">Develop the new feature</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">With the shell in place, I could focus on the actual Copilot feature — the AI tab organizer that was the whole point of the project.</p>
+    </div>
+    <!-- Step 2 — middle -->
+    <div class="anim d2" style="width:75%;background:var(--surface);border:1px solid var(--border);border-radius:0;padding:20px 28px;text-align:center;border-bottom:none;position:relative;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;">
+        <span style="font-family:var(--serif);font-size:24px;color:var(--copper);">02</span>
+        <span style="font-weight:600;font-size:16px;">Refine each element</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">The first pass had plenty of rough edges. I found it most effective to isolate one element at a time and iterate until it matched the real Edge UI.</p>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Averaged 5–10 revision cycles per element</div>
+    </div>
+    <!-- Step 1 — base / widest — "half the battle" -->
+    <div class="anim d3" style="width:100%;background:var(--copper-bg);border:2px solid var(--copper);border-radius:0 0 10px 10px;padding:24px 32px;text-align:center;position:relative;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;">
+        <span style="font-family:var(--serif);font-size:28px;color:var(--copper);">01</span>
+        <span style="font-weight:600;font-size:17px;">Build the frontend shell</span>
+      </div>
+      <p style="font-size:14px;color:var(--text-secondary);line-height:1.55;">For this project, getting started was half the battle — recreating the Edge Mobile UI shell got me into a flow state and gave me a tangible playground to build on. Not the main scope, but it made everything above it possible.</p>
+      <div style="margin-top:10px;display:inline-block;background:var(--copper);color:white;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 14px;border-radius:20px;">Instant satisfaction and actionable next steps</div>
+    </div>
   </div>
-  <div class="callout anim d4 copper-border" style="margin-top:16px;">The process is <em>slow and iterative</em> — but each cycle gets you closer to something real. Expect 5–10 revision cycles per feature.</div>
 </div>
 
-<!-- 18. SHOWCASE 2 -->
+<!-- 18. EVOLUTION -->
+<div class="slide" data-section="Era 3 · The Agentic Era · Edge Demo Visual Evolution">
+  <div style="width:100%;">
+    <h3 class="anim d1" style="font-family:var(--serif);font-size:32px;font-weight:400;text-align:center;margin-bottom:4px;">Visual Evolution</h3>
+    <p class="anim d2" style="font-size:13px;color:var(--text-secondary);text-align:center;margin-bottom:28px;">50 sessions, 30 hours, 6 stages — from skeleton UI to quality demo</p>
+
+    <div style="position:relative;display:flex;align-items:flex-start;justify-content:center;gap:18px;">
+      <!-- Timeline connector line -->
+      <div class="anim d2" style="position:absolute;top:135px;left:80px;right:80px;height:2px;background:linear-gradient(90deg,var(--copper-bg),var(--copper),var(--copper-bg));z-index:0;"></div>
+
+      <!-- 1 -->
+      <div class="anim" style="transition-delay:0.3s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="width:128px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <img src="Era 3/1.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">01</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:140px;">First "Hello World" prompt</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="anim" style="transition-delay:0.55s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="width:128px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <img src="Era 3/2.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">02</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:140px;">Fed the agent a screenshot of current Edge</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="anim" style="transition-delay:0.8s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="width:128px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <img src="Era 3/3.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">03</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:140px;">Fine-tuning each element &amp; feature individually</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="anim" style="transition-delay:1.05s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="width:128px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <img src="Era 3/4.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">04</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:140px;">Added key features missed from earlier iterations</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="anim" style="transition-delay:1.3s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="width:128px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+          <img src="Era 3/5.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">05</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:140px;">Final polishing of NTP UI to be as true as possible</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="anim" style="transition-delay:1.55s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:1;">
+        <div style="display:flex;gap:8px;">
+          <div style="width:110px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <img src="Era 3/6.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+          </div>
+          <div style="width:110px;height:270px;border-radius:16px;overflow:hidden;border:2px solid var(--border);background:#1a1a1a;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <img src="Era 3/6b.png" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-family:var(--serif);color:var(--copper);">06</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:500;line-height:1.3;margin-top:-2px;max-width:230px;">Adding in the new features</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 20. SHOWCASE 2 -->
 <div class="slide top" data-section="Era 3 · The Agentic Era">
   <div class="section-label anim d1">Showcase 2</div>
   <h3 class="slide-title anim d2">Khora — An E-Commerce Platform</h3>
@@ -776,7 +889,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   </div>
 </div>
 
-<!-- 19. ARCHITECTURE -->
+<!-- 21. ARCHITECTURE -->
 <div class="slide top" data-section="Era 3 · The Agentic Era">
   <div class="section-label anim d1">Showcase 2 · Architecture</div>
   <h3 class="slide-title anim d2">The End-to-End Stack</h3>
@@ -784,7 +897,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   <div class="anim d4"><div class="img-frame"><img src="khora-ecommerce-flow-screenshot.png" alt="Architecture" onerror="this.parentElement.outerHTML='<div class=img-placeholder style=min-height:300px><div><div style=font-size:28px;margin-bottom:12px>🏗️</div>Full-Stack Architecture Diagram<br><div style=display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px><span style=background:var(--blue-bg);color:var(--blue);padding:4px_10px;border-radius:4px;font-size:12px>Next.js</span> <span style=background:var(--blue-bg);color:var(--blue);padding:4px_10px;border-radius:4px;font-size:12px>Prisma</span> <span style=background:var(--blue-bg);color:var(--blue);padding:4px_10px;border-radius:4px;font-size:12px>Turso</span> <span style=background:var(--copper-bg);color:var(--copper);padding:4px_10px;border-radius:4px;font-size:12px>Stripe</span> <span style=background:var(--copper-bg);color:var(--copper);padding:4px_10px;border-radius:4px;font-size:12px>Resend</span></div></div></div>'"></div></div>
 </div>
 
-<!-- 20. REAL COST -->
+<!-- 22. REAL COST -->
 <div class="slide top" data-section="Era 3 · The Agentic Era">
   <div class="section-label anim d1">The Honest Reality</div>
   <h3 class="slide-title anim d2">The Real Cost of Vibe Coding</h3>
@@ -803,7 +916,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   </div>
 </div>
 
-<!-- 21. LESSONS -->
+<!-- 23. LESSONS -->
 <div class="slide dark-slide centered" data-section="Looking Forward">
   <div class="section-label anim d1">Lessons Learned</div>
   <h2 class="section-title anim d2" style="max-width:700px;">AI technology is evolving fast</h2>
@@ -817,7 +930,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   </div>
 </div>
 
-<!-- 22. LOOKING FORWARD -->
+<!-- 24. LOOKING FORWARD -->
 <div class="slide top" data-section="Looking Forward">
   <div class="section-label anim d1">Looking Forward</div>
   <h3 class="slide-title anim d2">What This Means for Product Managers</h3>
@@ -829,7 +942,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   </div>
 </div>
 
-<!-- 23. THANK YOU -->
+<!-- 25. THANK YOU -->
 <div class="slide dark-slide copper-dark centered" data-section="Looking Forward">
   <h1 class="title-xl anim d1" style="font-style:italic;">Thank You</h1>
   <div class="divider anim d2" style="margin:20px auto;"></div>
