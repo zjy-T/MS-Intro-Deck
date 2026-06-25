@@ -129,6 +129,20 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 .divider { width: 48px; height: 2px; background: var(--copper); margin: 20px 0; }
 
+/* Resizable iframe wrapper */
+.iframe-resizable { position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white; }
+.iframe-resizable iframe { width:100%;height:100%;border:none;display:block; }
+.iframe-resize-handle { position:absolute;bottom:0;left:0;right:0;height:10px;cursor:ns-resize;background:linear-gradient(transparent,rgba(0,0,0,0.06));z-index:5;transition:background 0.2s; }
+.iframe-resize-handle:hover, .iframe-resize-handle.active { background:linear-gradient(transparent,rgba(0,0,0,0.15)); }
+.iframe-resize-handle::after { content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:32px;height:3px;border-radius:2px;background:rgba(0,0,0,0.2); }
+
+/* Edge demo resize handles */
+.edge-resize-handle { position:absolute;z-index:10;opacity:0;transition:opacity 0.2s; }
+#edge-demo-frame:hover .edge-resize-handle { opacity:1; }
+.edge-resize-e { right:-4px;top:20%;height:60%;width:8px;cursor:ew-resize;background:linear-gradient(to right,transparent,rgba(0,0,0,0.12));border-radius:0 4px 4px 0; }
+.edge-resize-s { bottom:-4px;left:20%;width:60%;height:8px;cursor:ns-resize;background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.12));border-radius:0 0 4px 4px; }
+.edge-resize-se { right:-4px;bottom:-4px;width:14px;height:14px;cursor:nwse-resize;background:radial-gradient(circle at bottom right,rgba(0,0,0,0.18) 40%,transparent 70%);border-radius:0 0 4px 0; }
+
 /* Dark slides */
 .slide.dark-slide { background: var(--blue); color: white; }
 .slide.dark-slide.copper-dark { background: #7D6E64; }
@@ -763,8 +777,11 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
       <div style="margin-top:14px;font-size:13px;color:var(--text-muted);">edge-demo.info</div>
     </div>
     <div class="anim d2" style="display:flex;align-items:start;justify-content:center;padding-top:0;">
-      <div style="position:relative;width:290px;height:595px;overflow:hidden;background:transparent;border-radius:28px;">
+      <div id="edge-demo-frame" style="position:relative;width:290px;height:595px;overflow:hidden;background:transparent;border-radius:28px;">
         <iframe src="https://edge-demo.info" style="position:absolute;top:-26px;left:-8px;width:460px;height:960px;border:none;transform:scale(0.64);transform-origin:top left;" scrolling="no" allow="autoplay"></iframe>
+        <div class="edge-resize-handle edge-resize-e"></div>
+        <div class="edge-resize-handle edge-resize-s"></div>
+        <div class="edge-resize-handle edge-resize-se"></div>
       </div>
     </div>
   </div>
@@ -907,8 +924,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Era 3 · The Agentic Era · Khora Storefront">
   <div class="anim d1" style="display:flex;flex-direction:column;width:100%;height:100%;padding-top:8px;">
     <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);margin-bottom:6px;">Storefront — <a href="https://khora-studio.com/" target="_blank" style="color:var(--copper);text-decoration:underline;">khora-studio.com</a></div>
-    <div style="flex:1;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white;">
-      <iframe src="https://khora-studio.com/" style="width:100%;height:100%;border:none;" allow="autoplay"></iframe>
+    <div class="iframe-resizable" style="flex:1;">
+      <iframe src="https://khora-studio.com/" allow="autoplay"></iframe>
+      <div class="iframe-resize-handle"></div>
     </div>
   </div>
 </div>
@@ -917,8 +935,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <div class="slide top" data-section="Era 3 · The Agentic Era · Khora Inventory">
   <div class="anim d1" style="display:flex;flex-direction:column;width:100%;height:100%;padding-top:8px;">
     <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);margin-bottom:6px;">Inventory — <a href="https://khora-inventory.vercel.app/?demo=true" target="_blank" style="color:var(--copper);text-decoration:underline;">khora-inventory.vercel.app</a></div>
-    <div style="flex:1;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white;">
-      <iframe src="https://khora-inventory.vercel.app/?demo=true" style="width:100%;height:100%;border:none;" allow="autoplay"></iframe>
+    <div class="iframe-resizable" style="flex:1;">
+      <iframe src="https://khora-inventory.vercel.app/?demo=true" allow="autoplay"></iframe>
+      <div class="iframe-resize-handle"></div>
     </div>
   </div>
 </div>
@@ -1077,6 +1096,67 @@ document.addEventListener('mousemove', e => {
   document.body.classList.toggle('toc-visible', relX > rect.width - 60);
 });
 document.addEventListener('keydown', () => { const h=document.getElementById('keys-hint'); if(h) h.style.opacity='0'; }, {once:true});
+
+// ── Resizable iframe handles ──
+(function(){
+  // Khora iframe vertical resize
+  document.querySelectorAll('.iframe-resize-handle').forEach(handle => {
+    const wrapper = handle.parentElement;
+    let startY, startH, scale;
+    handle.addEventListener('mousedown', e => {
+      e.preventDefault();
+      const deck = document.getElementById('deck');
+      scale = deck.getBoundingClientRect().height / 720;
+      startY = e.clientY;
+      startH = wrapper.getBoundingClientRect().height / scale;
+      wrapper.style.flex = 'none';
+      wrapper.style.height = startH + 'px';
+      handle.classList.add('active');
+      wrapper.querySelector('iframe').style.pointerEvents = 'none';
+      const onMove = ev => {
+        const delta = (ev.clientY - startY) / scale;
+        wrapper.style.height = Math.max(100, startH + delta) + 'px';
+      };
+      const onUp = () => {
+        handle.classList.remove('active');
+        wrapper.querySelector('iframe').style.pointerEvents = '';
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  });
+
+  // Edge demo bidirectional resize
+  const edgeFrame = document.getElementById('edge-demo-frame');
+  if (edgeFrame) {
+    edgeFrame.querySelectorAll('.edge-resize-handle').forEach(handle => {
+      const resizeH = handle.classList.contains('edge-resize-e') || handle.classList.contains('edge-resize-se');
+      const resizeV = handle.classList.contains('edge-resize-s') || handle.classList.contains('edge-resize-se');
+      let startX, startY, startW, startH, scale;
+      handle.addEventListener('mousedown', e => {
+        e.preventDefault();
+        const deck = document.getElementById('deck');
+        scale = deck.getBoundingClientRect().width / 1280;
+        startX = e.clientX; startY = e.clientY;
+        startW = edgeFrame.offsetWidth; startH = edgeFrame.offsetHeight;
+        edgeFrame.querySelector('iframe').style.pointerEvents = 'none';
+        const onMove = ev => {
+          if (resizeH) edgeFrame.style.width = Math.max(150, startW + (ev.clientX - startX) / scale) + 'px';
+          if (resizeV) edgeFrame.style.height = Math.max(200, startH + (ev.clientY - startY) / scale) + 'px';
+        };
+        const onUp = () => {
+          edgeFrame.querySelector('iframe').style.pointerEvents = '';
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onUp);
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+      });
+    });
+  }
+})();
 
 // ── Slide 7: Full 289-row interactive data table + model comparison ──
 (function(){
