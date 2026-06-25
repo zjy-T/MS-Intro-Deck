@@ -6,7 +6,6 @@ node_modules/
 *.pdf
 deck.html
 AI Skin Analysis Build Flow.jam
-API:Usage payments/
 
 # Unused research paper scans
 paper_page-*.jpg
