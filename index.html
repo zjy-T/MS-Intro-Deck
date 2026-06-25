@@ -778,7 +778,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     </div>
     <div class="anim d2" style="display:flex;align-items:start;justify-content:center;padding-top:0;">
       <div id="edge-demo-frame" style="position:relative;width:290px;height:595px;overflow:hidden;background:transparent;border-radius:28px;">
-        <iframe id="edge-demo-iframe" src="https://edge-demo.info" style="position:absolute;top:0;left:0;width:453px;height:930px;border:none;transform:scale(0.64);transform-origin:top left;" scrolling="no" allow="autoplay"></iframe>
+        <iframe id="edge-demo-iframe" src="https://edge-demo.info" style="position:absolute;top:0;left:0;width:453px;height:1800px;border:none;transform:scale(0.64);transform-origin:top left;" scrolling="no" allow="autoplay"></iframe>
         <div class="edge-resize-handle edge-resize-e"></div>
         <div class="edge-resize-handle edge-resize-s"></div>
         <div class="edge-resize-handle edge-resize-se"></div>
@@ -1128,15 +1128,9 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     });
   });
 
-  // Edge demo bidirectional resize — iframe grows with container
+  // Edge demo bidirectional resize — container acts as viewport window
   const edgeFrame = document.getElementById('edge-demo-frame');
   const edgeIframe = document.getElementById('edge-demo-iframe');
-  const iframeScale = 0.64;
-  function syncIframeSize() {
-    if (!edgeFrame || !edgeIframe) return;
-    edgeIframe.style.width = (edgeFrame.offsetWidth / iframeScale) + 'px';
-    edgeIframe.style.height = (edgeFrame.offsetHeight / iframeScale) + 'px';
-  }
   if (edgeFrame) {
     edgeFrame.querySelectorAll('.edge-resize-handle').forEach(handle => {
       const resizeH = handle.classList.contains('edge-resize-e') || handle.classList.contains('edge-resize-se');
@@ -1152,7 +1146,6 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
         const onMove = ev => {
           if (resizeH) edgeFrame.style.width = Math.max(150, startW + (ev.clientX - startX) / scale) + 'px';
           if (resizeV) edgeFrame.style.height = Math.max(200, startH + (ev.clientY - startY) / scale) + 'px';
-          syncIframeSize();
         };
         const onUp = () => {
           edgeIframe.style.pointerEvents = '';
