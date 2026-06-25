@@ -623,8 +623,14 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     <div id="heatmap-tooltip" style="display:none;position:absolute;background:rgba(26,26,26,0.9);color:white;padding:8px 12px;border-radius:6px;font-size:12px;pointer-events:none;z-index:10;white-space:nowrap;"></div>
   </div>
   <div class="anim d2" style="display:flex;gap:8px;margin-top:8px;">
-    <div class="stat-card accent s9-card" style="--card-delay:0.4s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">~2 sec</div><div class="label" style="font-size:9px;">ML prediction time</div></div>
-    <div class="stat-card accent s9-card" style="--card-delay:0.5s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">~2 days</div><div class="label" style="font-size:9px;">DFT simulation time</div></div>
+    <div class="stat-card accent s9-card" style="--card-delay:0.4s;padding:10px 12px;flex:1.4;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Screening all 289 candidates</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="text-align:center;flex:1;"><div class="number" style="font-size:18px;">~578 days</div><div class="label" style="font-size:9px;">Traditional DFT</div></div>
+        <div style="font-size:18px;color:var(--blue);font-weight:600;">→</div>
+        <div style="text-align:center;flex:1;"><div class="number" style="font-size:18px;color:var(--blue);">~3 sec</div><div class="label" style="font-size:9px;">ML prediction</div></div>
+      </div>
+    </div>
     <div class="stat-card accent s9-card" style="--card-delay:0.6s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">$150K</div><div class="label" style="font-size:9px;">Cost saved</div></div>
     <div class="stat-card accent s9-card" style="--card-delay:0.7s;padding:8px 6px;flex:1;"><div class="number" style="font-size:18px;">94%</div><div class="label" style="font-size:9px;">Accuracy vs DFT</div></div>
   </div>
@@ -646,7 +652,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 
 <!-- 11. ERA 2 CONTEXT -->
 <div class="slide" data-section="Era 2 · Computer Vision · The Business Context">
-  <p class="anim d1" style="font-family:var(--serif);font-size:19px;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-top:6px;"><strong style="font-style:normal;color:var(--text);">Cosmetic Medicine</strong> — enhancing appearance through surgical and non-surgical procedures: skin treatments, injectables, laser therapy, and more.</p>
+  <p class="anim d1" style="font-family:var(--serif);font-size:19px;color:var(--text-secondary);font-style:italic;line-height:1.5;margin-top:6px;"><strong style="font-style:normal;color:var(--text);">Cosmetic Medicine</strong> — enhancing appearance through surgical and non-surgical procedures: skin treatments, injectables, laser therapy, plastic surgery, etc.</p>
   <div class="anim d2" style="margin-top:16px;">
     <ul class="bullet-list">
       <li style="font-size:16px;">One of Meituan's <strong style="color:var(--text);">most profitable</strong> and also most expensive verticals</li>
@@ -655,8 +661,8 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     </ul>
     <div style="display:flex;gap:12px;margin-left:18px;">
       <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.5s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High average product cost</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Average order price of 1200 RMB</div></div>
-      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.7s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High perceived medical risk</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Users worry about disfigurement</div></div>
-      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.9s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High domain knowledge requirement</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">"Which procedure best suits my needs?"<br>"What's the difference between A vs. B?"</div></div>
+      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.7s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High perceived medical risk</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">Non-reversible change, does not meet expectation, medical complications</div></div>
+      <div class="anim" style="flex:1;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:14px;border-left:3px solid var(--era2);transition-delay:0.9s;"><div style="font-weight:500;color:var(--text);margin-bottom:4px;">High domain knowledge requirement</div><div style="font-size:12px;color:var(--text-secondary);line-height:1.4;">"What's the best treatment for acne?"<br>"What's the difference between Thermage and Ultherapy?"</div></div>
     </div>
   </div>
   <div class="callout anim d3" style="margin-top:40px;border-left-color:var(--era2);padding:18px 22px;">
@@ -910,9 +916,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 <!-- 21. KHORA INVENTORY -->
 <div class="slide top" data-section="Era 3 · The Agentic Era · Khora Inventory">
   <div class="anim d1" style="display:flex;flex-direction:column;width:100%;height:100%;padding-top:8px;">
-    <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);margin-bottom:6px;">Inventory — <a href="https://khora-inventory.vercel.app/" target="_blank" style="color:var(--copper);text-decoration:underline;">khora-inventory.vercel.app</a></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);margin-bottom:6px;">Inventory — <a href="https://khora-inventory.vercel.app/?demo=true" target="_blank" style="color:var(--copper);text-decoration:underline;">khora-inventory.vercel.app</a></div>
     <div style="flex:1;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:white;">
-      <iframe src="https://khora-inventory.vercel.app/" style="width:100%;height:100%;border:none;" allow="autoplay"></iframe>
+      <iframe src="https://khora-inventory.vercel.app/?demo=true" style="width:100%;height:100%;border:none;" allow="autoplay"></iframe>
     </div>
   </div>
 </div>
@@ -934,6 +940,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
       <img src="Era%203/API%3AUsage%20payments/Lovable%20payments.png" class="anim d3" style="position:absolute;top:175px;left:20px;width:68%;border-radius:6px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,0.07);background:white;padding:4px;">
       <img src="Era%203/API%3AUsage%20payments/Codex%20Subscription.png" class="anim d4" style="position:absolute;top:300px;left:0;width:50%;border-radius:6px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,0.07);background:white;padding:4px;">
       <img src="Era%203/API%3AUsage%20payments/Gemini%20API.png" class="anim d5" style="position:absolute;top:290px;right:0;width:50%;border-radius:6px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,0.07);background:white;padding:4px;">
+      <img src="Era%203/API%3AUsage%20payments/usage%20limit.png" class="anim d6" style="position:absolute;top:370px;left:30%;width:45%;border-radius:6px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,0.07);background:#1a1a1a;padding:4px;">
     </div>
     <!-- Right: Insights -->
     <div>
@@ -1536,21 +1543,21 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     canvas.addEventListener('mousemove', function(e) {
       if (!barChart) return;
       const rect = canvas.getBoundingClientRect();
-      const y = e.clientY - rect.top;
-      const yScale = barChart.scales.y;
+      const scaleY = canvas.height / rect.height;
+      const canvasY = (e.clientY - rect.top) * scaleY;
       const meta = barChart.getDatasetMeta(0);
       let found = -1;
       for (let i = 0; i < meta.data.length; i++) {
         const bar = meta.data[i];
         const barH = bar.height || 20;
-        if (Math.abs(y - bar.y) < barH * 0.7) { found = i; break; }
+        if (Math.abs(canvasY - bar.y) < barH * 0.7) { found = i; break; }
       }
       if (found >= 0) {
         const f = featureInfo[found];
         tooltip.innerHTML = '<div style="font-weight:600;margin-bottom:2px;">' + f.en + '</div><div style="color:rgba(255,255,255,0.7);">' + f.zh + '</div>';
         tooltip.style.display = 'block';
         tooltip.style.left = (e.clientX - rect.left + 14) + 'px';
-        tooltip.style.top = (y - 20) + 'px';
+        tooltip.style.top = (e.clientY - rect.top - 20) + 'px';
       } else {
         tooltip.style.display = 'none';
       }
