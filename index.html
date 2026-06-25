@@ -606,9 +606,10 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
       </div>
       <p style="font-size:15px;color:var(--text-secondary);line-height:1.5;margin-top:10px;"><strong style="color:var(--blue);">Finding the signal in the noise:</strong> More features adds noise and overfitting. Too few loses predictive power. The optimum sits in between.</p>
     </div>
-    <div style="display:flex;flex-direction:column;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;">
+    <div style="display:flex;flex-direction:column;position:relative;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px;position:relative;">
         <canvas id="chart-feature-importance" width="520" height="340"></canvas>
+        <div id="feature-tooltip" style="display:none;position:absolute;background:rgba(26,26,26,0.92);color:white;padding:8px 14px;border-radius:8px;font-size:12px;pointer-events:none;z-index:10;white-space:nowrap;font-family:var(--sans);line-height:1.6;"></div>
       </div>
       <p style="font-size:15px;color:var(--text-secondary);line-height:1.5;margin-top:10px;"><strong style="color:var(--copper);">Mapping the chemical space:</strong> The model identifies which physical properties matter most for accurate prediction.</p>
     </div>
@@ -1443,19 +1444,57 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     }
   };
 
+  const featureInfo = [
+    { label: ' ', parts: [{t:'N',sub:false},{t:'VE',sub:true},{t:' avg',sub:false}], en: 'Avg. Number of Valence Electrons', zh: '平均价电子数' },
+    { label: ' ', parts: [{t:'N',sub:false},{t:'VE₁',sub:true},{t:' − N',sub:false},{t:'VE₂',sub:true}], en: 'Valence Electron Difference', zh: '价电子数差值' },
+    { label: ' ', parts: [{t:'r',sub:false},{t:'₁',sub:true},{t:' − r',sub:false},{t:'₂',sub:true}], en: 'Covalent Radius Difference', zh: '共价半径差值' },
+    { label: ' ', parts: [{t:'IE',sub:false},{t:'avg',sub:true}], en: 'Avg. Ionization Energy', zh: '平均电离能' },
+    { label: ' ', parts: [{t:'r',sub:false},{t:'avg',sub:true}], en: 'Avg. Covalent Radius', zh: '平均共价半径' },
+    { label: ' ', parts: [{t:'EA',sub:false},{t:'₁',sub:true},{t:' − EA',sub:false},{t:'₂',sub:true}], en: 'Electron Affinity Difference', zh: '电子亲和能差值' },
+  ];
+
+  const subscriptPlugin = {
+    id: 'subscriptLabels',
+    afterDraw: function(chart) {
+      const ctx = chart.ctx;
+      const meta = chart.getDatasetMeta(0);
+      const x = chart.chartArea.left - 6;
+      ctx.save();
+      for (let i = 0; i < featureInfo.length; i++) {
+        const bar = meta.data[i];
+        if (!bar) continue;
+        const y = bar.y;
+        const parts = featureInfo[i].parts;
+        const widths = [];
+        for (let p = parts.length - 1; p >= 0; p--) {
+          ctx.font = (parts[p].sub ? '9' : '11') + 'px "DM Sans"';
+          widths[p] = ctx.measureText(parts[p].t).width;
+        }
+        let cx = x;
+        for (let p = parts.length - 1; p >= 0; p--) {
+          const part = parts[p];
+          ctx.font = (part.sub ? '500 9' : '500 11') + 'px "DM Sans"';
+          ctx.fillStyle = '#1A1A1A';
+          ctx.textAlign = 'right';
+          ctx.fillText(part.t, cx, y + (part.sub ? 3 : 0));
+          cx -= widths[p];
+        }
+      }
+      ctx.restore();
+    }
+  };
+
   const barOpts = {
     indexAxis: 'y', responsive: false,
     animation: false,
     plugins: {
       legend: { display: false },
       title: { display: true, text: 'Top 6 Feature Importances (XGBR)', font: { family: "'DM Sans'", size: 13, weight: '500' }, color: '#1A1A1A', padding: { bottom: 8 }},
-      tooltip: { backgroundColor: 'rgba(26,26,26,0.9)', titleFont: { family: "'DM Sans'" }, bodyFont: { family: "'DM Sans'" }, padding: 10, cornerRadius: 6,
-        callbacks: { label: function(ctx){ return (ctx.raw*100).toFixed(0)+'% importance'; }}
-      }
+      tooltip: { enabled: false }
     },
     scales: {
       x: { title: { display: true, text: 'Relative Importance', font: { family: "'DM Sans'", size: 11 }, color: '#8A8A8A' }, grid: { color: '#EDEAE5' }, ticks: { font: { family: "'DM Sans'", size: 10 }, color: '#8A8A8A', callback: function(v){ return (v*100)+'%'; }}, max: 0.5 },
-      y: { grid: { display: false }, ticks: { font: { family: "'DM Sans'", size: 11, weight: '500' }, color: '#1A1A1A' }}
+      y: { grid: { display: false }, ticks: { font: { family: "'DM Sans'", size: 11 }, color: 'transparent', padding: 40 }}
     }
   };
 
@@ -1481,12 +1520,43 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     barChart = new Chart(document.getElementById('chart-feature-importance'), {
       type: 'bar',
       data: {
-        labels: ['N_VE avg', 'N_VE₁−N_VE₂', 'r₁−r₂', 'IE avg', 'r avg', 'EA₁−EA₂'],
+        labels: featureInfo.map(f => f.label),
         datasets: [{ label: 'Importance', data: [0,0,0,0,0,0], backgroundColor: barColors, borderRadius: 4, borderSkipped: false }]
       },
-      options: barOpts
+      options: barOpts,
+      plugins: [subscriptPlugin]
     });
   }
+
+  // Hover tooltip for feature names
+  (function(){
+    const canvas = document.getElementById('chart-feature-importance');
+    const tooltip = document.getElementById('feature-tooltip');
+    if (!canvas || !tooltip) return;
+    canvas.addEventListener('mousemove', function(e) {
+      if (!barChart) return;
+      const rect = canvas.getBoundingClientRect();
+      const y = e.clientY - rect.top;
+      const yScale = barChart.scales.y;
+      const meta = barChart.getDatasetMeta(0);
+      let found = -1;
+      for (let i = 0; i < meta.data.length; i++) {
+        const bar = meta.data[i];
+        const barH = bar.height || 20;
+        if (Math.abs(y - bar.y) < barH * 0.7) { found = i; break; }
+      }
+      if (found >= 0) {
+        const f = featureInfo[found];
+        tooltip.innerHTML = '<div style="font-weight:600;margin-bottom:2px;">' + f.en + '</div><div style="color:rgba(255,255,255,0.7);">' + f.zh + '</div>';
+        tooltip.style.display = 'block';
+        tooltip.style.left = (e.clientX - rect.left + 14) + 'px';
+        tooltip.style.top = (y - 20) + 'px';
+      } else {
+        tooltip.style.display = 'none';
+      }
+    });
+    canvas.addEventListener('mouseleave', function() { tooltip.style.display = 'none'; });
+  })();
 
   function animateCharts() {
     initCharts();
@@ -1502,7 +1572,7 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
 
     for (let i = 0; i < barData.length; i++) {
       const target = barData[i];
-      const start = n * delay + 200 + i * 200;
+      const start = i * delay;
       const steps = 12;
       for (let s = 1; s <= steps; s++) {
         setTimeout(() => {
