@@ -140,7 +140,9 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
 .edge-resize-handle { position:absolute;z-index:10;opacity:0;transition:opacity 0.2s; }
 #edge-demo-frame:hover .edge-resize-handle { opacity:1; }
 .edge-resize-e { right:-4px;top:20%;height:60%;width:8px;cursor:ew-resize;background:linear-gradient(to right,transparent,rgba(0,0,0,0.12));border-radius:0 4px 4px 0; }
+.edge-resize-w { left:-4px;top:20%;height:60%;width:8px;cursor:ew-resize;background:linear-gradient(to left,transparent,rgba(0,0,0,0.12));border-radius:4px 0 0 4px; }
 .edge-resize-s { bottom:-4px;left:20%;width:60%;height:8px;cursor:ns-resize;background:linear-gradient(to bottom,transparent,rgba(0,0,0,0.12));border-radius:0 0 4px 4px; }
+.edge-resize-n { top:-4px;left:20%;width:60%;height:8px;cursor:ns-resize;background:linear-gradient(to top,transparent,rgba(0,0,0,0.12));border-radius:4px 4px 0 0; }
 .edge-resize-se { right:-4px;bottom:-4px;width:14px;height:14px;cursor:nwse-resize;background:radial-gradient(circle at bottom right,rgba(0,0,0,0.18) 40%,transparent 70%);border-radius:0 0 4px 0; }
 
 /* Dark slides */
@@ -742,7 +744,7 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
   <span class="era3-hero-label anim d1">Era Three · 2025–Now</span>
   <h1 class="era3-hero-title anim d2">The Agentic Era</h1>
   <div class="era3-hero-divider anim d3"></div>
-  <p class="era3-hero-sub anim d4">Lessons from vibe coding in the wild</p>
+  <p class="era3-hero-sub anim d4">My experiences from vibe coding in the wild</p>
 </div>
 
 <!-- 15. ERA 3 PARADIGM -->
@@ -778,9 +780,11 @@ h3.slide-title { font-family: var(--serif); font-size: 34px; font-weight: 400; l
     </div>
     <div class="anim d2" style="display:flex;align-items:start;justify-content:center;padding-top:0;">
       <div id="edge-demo-frame" style="position:relative;width:290px;height:595px;overflow:hidden;background:transparent;border-radius:28px;">
-        <iframe id="edge-demo-iframe" src="https://edge-demo.info" style="position:absolute;top:0;left:0;width:453px;height:1800px;border:none;transform:scale(0.64);transform-origin:top left;" scrolling="no" allow="autoplay"></iframe>
-        <div class="edge-resize-handle edge-resize-e"></div>
+        <iframe id="edge-demo-iframe" src="https://edge-demo.info" style="width:100%;height:100%;border:none;" allow="autoplay"></iframe>
+        <div class="edge-resize-handle edge-resize-n"></div>
         <div class="edge-resize-handle edge-resize-s"></div>
+        <div class="edge-resize-handle edge-resize-w"></div>
+        <div class="edge-resize-handle edge-resize-e"></div>
         <div class="edge-resize-handle edge-resize-se"></div>
       </div>
     </div>
@@ -1128,24 +1132,41 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     });
   });
 
-  // Edge demo bidirectional resize — container acts as viewport window
+  // Edge demo resize — all 4 edges + SE corner
   const edgeFrame = document.getElementById('edge-demo-frame');
   const edgeIframe = document.getElementById('edge-demo-iframe');
   if (edgeFrame) {
     edgeFrame.querySelectorAll('.edge-resize-handle').forEach(handle => {
-      const resizeH = handle.classList.contains('edge-resize-e') || handle.classList.contains('edge-resize-se');
-      const resizeV = handle.classList.contains('edge-resize-s') || handle.classList.contains('edge-resize-se');
-      let startX, startY, startW, startH, scale;
+      const cls = handle.className;
+      const isE = cls.includes('edge-resize-e') || cls.includes('edge-resize-se');
+      const isW = cls.includes('edge-resize-w');
+      const isS = cls.includes('edge-resize-s') || cls.includes('edge-resize-se');
+      const isN = cls.includes('edge-resize-n');
+      let startX, startY, startW, startH, startML, startMT, scale;
       handle.addEventListener('mousedown', e => {
         e.preventDefault();
-        const deck = document.getElementById('deck');
-        scale = deck.getBoundingClientRect().width / 1280;
+        scale = document.getElementById('deck').getBoundingClientRect().width / 1280;
         startX = e.clientX; startY = e.clientY;
-        startW = edgeFrame.offsetWidth; startH = edgeFrame.offsetHeight;
+        startW = edgeFrame.offsetWidth;
+        startH = edgeFrame.offsetHeight;
+        startML = parseFloat(edgeFrame.style.marginLeft) || 0;
+        startMT = parseFloat(edgeFrame.style.marginTop) || 0;
         edgeIframe.style.pointerEvents = 'none';
         const onMove = ev => {
-          if (resizeH) edgeFrame.style.width = Math.max(150, startW + (ev.clientX - startX) / scale) + 'px';
-          if (resizeV) edgeFrame.style.height = Math.max(200, startH + (ev.clientY - startY) / scale) + 'px';
+          const dx = (ev.clientX - startX) / scale;
+          const dy = (ev.clientY - startY) / scale;
+          if (isE) edgeFrame.style.width = Math.max(150, startW + dx) + 'px';
+          if (isS) edgeFrame.style.height = Math.max(200, startH + dy) + 'px';
+          if (isW) {
+            const newW = Math.max(150, startW - dx);
+            edgeFrame.style.width = newW + 'px';
+            edgeFrame.style.marginLeft = (startML + (startW - newW)) + 'px';
+          }
+          if (isN) {
+            const newH = Math.max(200, startH - dy);
+            edgeFrame.style.height = newH + 'px';
+            edgeFrame.style.marginTop = (startMT + (startH - newH)) + 'px';
+          }
         };
         const onUp = () => {
           edgeIframe.style.pointerEvents = '';
