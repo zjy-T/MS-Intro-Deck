@@ -4,9 +4,9 @@ Use this file to onboard any AI assistant (GitHub Copilot, Claude, etc.) to this
 
 ## What is this?
 
-A 23-slide interactive HTML presentation deck for a Microsoft intro talk on June 26, 2026. The talk is titled **"From Predicting a Single Number to Agentic Coding"** and covers Tony's 6-year journey building with AI across three eras.
+A 25-slide interactive HTML presentation deck for a Microsoft intro talk on June 26, 2026. The talk is titled **"From Predicting a Single Number to Working Alongside Agents"** and covers Tony's journey building with AI across three eras.
 
-Everything lives in a single file: `index.html` (HTML + CSS + JS).
+Everything lives in a single file: `index.html` (HTML + CSS + JS). Deployed via GitHub Pages.
 
 ## Slide structure
 
@@ -20,8 +20,18 @@ Everything lives in a single file: `index.html` (HTML + CSS + JS).
 | 11 | Era 2 | Business context — cosmetic medicine at Meituan | Done |
 | 12 | Era 2 | AI Skin Analysis — 3-step product walkthrough with screenshots | Done |
 | 13 | Era 2 | How We Built It — pannable/zoomable FigJam build flow | Done |
-| 14–20 | Era 3: "The Agentic Era" | Agentic coding, vibe-coding exercises | Placeholder — build next |
-| 21–23 | Looking Forward / Thank You | Wrap-up | Placeholder |
+| 14 | Era 3: "The Agentic Era" | Section opener with vibe coding hero | Done |
+| 15 | Era 3 | Landscape shift — what it is / what it isn't | Done |
+| 16 | Era 3 | Showcase 1: Edge mobile browser demo (iframe) | Done |
+| 17 | Era 3 | Build flow pyramid — effort distribution | Done |
+| 18 | Era 3 | Visual evolution filmstrip — 6 stages of Edge demo | Done |
+| 19 | Era 3 | Showcase 2: Khora — stats and overview | Done |
+| 20 | Era 3 | Khora storefront live demo (iframe) | Done |
+| 21 | Era 3 | Khora inventory live demo (iframe) | Done |
+| 22 | Era 3 | Khora architecture diagram (SVG) | Done |
+| 23 | Era 3 | Real cost of vibe coding — receipts + insights | Done |
+| 24 | — | Looking Forward — PM takeaways (2×2 grid) | Done |
+| 25 | — | Thank You | Done |
 
 ## Technical architecture
 
@@ -53,14 +63,10 @@ Everything lives in a single file: `index.html` (HTML + CSS + JS).
 5. Preview changes before reporting done
 6. Images go in per-era folders (e.g., "Era 2/")
 
-## What to build next
-
-**Era 3 (slides 14–20)** — "The Agentic Era". This era covers Tony's personal vibe-coding exercises and agentic coding work. The existing placeholder slides in `index.html` have scaffold content that needs to be rebuilt with the same quality and interactivity as Era 1 and Era 2.
-
-Look at slides 4–13 in the code for the patterns and quality bar to match.
-
-### Era 2 design notes (for reference)
-- Section indicator format: "Era X · Theme · Slide Name" in top-left corner (consolidated, no separate slide titles)
-- Slide 11: single-column layout with bullet list, barrier cards (staggered animation), and callout box
-- Slide 12: three step-cards with arrows, product screenshots, scrollable report in step 3
-- Slide 13: local PNG with custom pan/zoom viewer (drag, scroll-wheel, +/−/Reset buttons) — avoids slow Figma iframe embeds
+## Era 3 design notes
+- Section indicator format: "Era X · Theme · Slide Name" consolidated in `data-section` attribute
+- Slides 20–21: full-width iframes for live Khora demos (storefront + inventory)
+- Slide 22: full-slide centered SVG architecture diagram
+- Slide 23: overlapping receipt screenshots (absolutely positioned) + insight cards
+- Slide 24: italic summary statement → copper divider → uppercase heading → 2×2 takeaway grid
+- URL-encoded paths for folders with colons: `Era%203/API%3AUsage%20payments/`

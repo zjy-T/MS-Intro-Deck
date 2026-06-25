@@ -1,0 +1,198 @@
+<svg viewBox="0 0 1800 1000" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;">
+
+  <rect width="1800" height="1000" fill="#1E1E1E"/>
+
+  <!-- Title -->
+  <text x="900" y="52" text-anchor="middle" font-size="28" font-weight="700" fill="#FFFFFF" letter-spacing="4">KHORA | 衡石</text>
+  <text x="900" y="78" text-anchor="middle" font-size="14" fill="#999999" letter-spacing="1">E-Commerce Architecture — End-to-End Product Cycle</text>
+
+  <!-- ═══════════ CUSTOMER JOURNEY ═══════════ -->
+  <rect x="40" y="105" width="1720" height="130" rx="16" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="70" y="130" font-size="10" font-weight="600" fill="#888" letter-spacing="2">CUSTOMER JOURNEY</text>
+
+  <rect x="70" y="145" width="170" height="70" rx="12" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-width="1.5"/>
+  <circle cx="92" cy="166" r="10" fill="#3B82F6" fill-opacity="0.3"/>
+  <text x="92" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#3B82F6">1</text>
+  <text x="165" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Browse</text>
+  <text x="155" y="198" text-anchor="middle" font-size="10" fill="#888">Stone Guide · Catalog</text>
+
+  <line x1="240" y1="180" x2="290" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="288,176 296,180 288,184" fill="#555"/>
+
+  <rect x="296" y="145" width="170" height="70" rx="12" fill="#3B82F6" fill-opacity="0.15" stroke="#3B82F6" stroke-width="1.5"/>
+  <circle cx="318" cy="166" r="10" fill="#3B82F6" fill-opacity="0.3"/>
+  <text x="318" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#3B82F6">2</text>
+  <text x="391" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Customize</text>
+  <text x="381" y="198" text-anchor="middle" font-size="10" fill="#888">Bracelet Builder</text>
+
+  <line x1="466" y1="180" x2="516" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="514,176 522,180 514,184" fill="#555"/>
+
+  <rect x="522" y="145" width="170" height="70" rx="12" fill="#F59E0B" fill-opacity="0.15" stroke="#F59E0B" stroke-width="1.5"/>
+  <circle cx="544" cy="166" r="10" fill="#F59E0B" fill-opacity="0.3"/>
+  <text x="544" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#F59E0B">3</text>
+  <text x="617" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Cart</text>
+  <text x="607" y="198" text-anchor="middle" font-size="10" fill="#888">8 currencies · FX</text>
+
+  <line x1="692" y1="180" x2="742" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="740,176 748,180 740,184" fill="#555"/>
+
+  <rect x="748" y="145" width="170" height="70" rx="12" fill="#635BFF" fill-opacity="0.25" stroke="#635BFF" stroke-width="2"/>
+  <circle cx="770" cy="166" r="10" fill="#635BFF" fill-opacity="0.4"/>
+  <text x="770" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#635BFF">4</text>
+  <text x="843" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#FFFFFF">Pay</text>
+  <text x="833" y="198" text-anchor="middle" font-size="10" fill="#A5A0FF">Stripe Checkout</text>
+
+  <line x1="918" y1="180" x2="968" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="966,176 974,180 966,184" fill="#555"/>
+
+  <rect x="974" y="145" width="170" height="70" rx="12" fill="#EC4899" fill-opacity="0.15" stroke="#EC4899" stroke-width="1.5"/>
+  <circle cx="996" cy="166" r="10" fill="#EC4899" fill-opacity="0.3"/>
+  <text x="996" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#EC4899">5</text>
+  <text x="1069" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Email</text>
+  <text x="1059" y="198" text-anchor="middle" font-size="10" fill="#888">Order Confirmation</text>
+
+  <line x1="1144" y1="180" x2="1194" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="1192,176 1200,180 1192,184" fill="#555"/>
+
+  <rect x="1200" y="145" width="170" height="70" rx="12" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1.5"/>
+  <circle cx="1222" cy="166" r="10" fill="#10B981" fill-opacity="0.3"/>
+  <text x="1222" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#10B981">6</text>
+  <text x="1295" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Confirm</text>
+  <text x="1285" y="198" text-anchor="middle" font-size="10" fill="#888">Order Page</text>
+
+  <line x1="1370" y1="180" x2="1420" y2="180" stroke="#555" stroke-width="1.5"/>
+  <polygon points="1418,176 1426,180 1418,184" fill="#555"/>
+
+  <rect x="1426" y="145" width="170" height="70" rx="12" fill="#8B5CF6" fill-opacity="0.15" stroke="#8B5CF6" stroke-width="1.5"/>
+  <circle cx="1448" cy="166" r="10" fill="#8B5CF6" fill-opacity="0.3"/>
+  <text x="1448" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#8B5CF6">7</text>
+  <text x="1521" y="172" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Support</text>
+  <text x="1511" y="198" text-anchor="middle" font-size="10" fill="#888">Live Chat · Refund</text>
+
+  <!-- ═══════════ STOREFRONT ═══════════ -->
+  <rect x="40" y="260" width="860" height="280" rx="16" fill="#1a2744" fill-opacity="0.5" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="70" y="288" font-size="11" font-weight="700" fill="#3B82F6" letter-spacing="2">STOREFRONT</text>
+  <text x="215" y="288" font-size="11" fill="#5A7AA8">khora-studio.com</text>
+
+  <rect x="70" y="305" width="240" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="190" y="335" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Product Pages</text>
+  <text x="190" y="356" text-anchor="middle" font-size="10" fill="#7A8FA8">Stone Guide · Atelier · Search</text>
+  <text x="190" y="370" text-anchor="middle" font-size="10" fill="#7A8FA8">Resonance / Material filters</text>
+
+  <rect x="340" y="305" width="240" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="460" y="335" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Bracelet Builder</text>
+  <text x="460" y="356" text-anchor="middle" font-size="10" fill="#7A8FA8">Custom bead composition</text>
+  <text x="460" y="370" text-anchor="middle" font-size="10" fill="#7A8FA8">Interactive bead-on-cord UI</text>
+
+  <rect x="610" y="305" width="260" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="740" y="335" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Cart + Checkout</text>
+  <text x="740" y="356" text-anchor="middle" font-size="10" fill="#7A8FA8">8 currencies · Live FX (Frankfurter)</text>
+  <text x="740" y="370" text-anchor="middle" font-size="10" fill="#7A8FA8">Redirect to Stripe hosted page</text>
+
+  <rect x="70" y="400" width="240" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="190" y="430" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Customer Account</text>
+  <text x="190" y="451" text-anchor="middle" font-size="10" fill="#7A8FA8">Passwordless login (6-digit OTP)</text>
+  <text x="190" y="465" text-anchor="middle" font-size="10" fill="#7A8FA8">Order history · Profile</text>
+
+  <rect x="340" y="400" width="240" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="460" y="430" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Support Chat Widget</text>
+  <text x="460" y="451" text-anchor="middle" font-size="10" fill="#7A8FA8">Live IM · Typing indicator</text>
+  <text x="460" y="465" text-anchor="middle" font-size="10" fill="#7A8FA8">Chime · Rating · Refund request</text>
+
+  <rect x="610" y="400" width="260" height="74" rx="10" fill="#2A3A55" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="740" y="430" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">i18n + Currency</text>
+  <text x="740" y="451" text-anchor="middle" font-size="10" fill="#7A8FA8">EN / 中文 bilingual toggle</text>
+  <text x="740" y="465" text-anchor="middle" font-size="10" fill="#7A8FA8">Display currency switcher</text>
+
+  <!-- ═══════════ OPS PLATFORM ═══════════ -->
+  <rect x="40" y="570" width="860" height="230" rx="16" fill="#2D1F3D" fill-opacity="0.5" stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="70" y="598" font-size="11" font-weight="700" fill="#8B5CF6" letter-spacing="2">OPS PLATFORM</text>
+  <text x="240" y="598" font-size="11" fill="#7A6A9A">khora-inventory.vercel.app (internal)</text>
+
+  <rect x="70" y="615" width="240" height="74" rx="10" fill="#3A2A4F" stroke="#8B5CF6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="190" y="645" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Inventory + SKUs</text>
+  <text x="190" y="666" text-anchor="middle" font-size="10" fill="#9A8AB8">Stone catalog · Stock tracking</text>
+  <text x="190" y="680" text-anchor="middle" font-size="10" fill="#9A8AB8">SKU codes · Supplier</text>
+
+  <rect x="340" y="615" width="240" height="74" rx="10" fill="#3A2A4F" stroke="#8B5CF6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="460" y="645" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Order Management</text>
+  <text x="460" y="666" text-anchor="middle" font-size="10" fill="#9A8AB8">Fulfilment · Stock deduction</text>
+  <text x="460" y="680" text-anchor="middle" font-size="10" fill="#9A8AB8">Refund requests · Status</text>
+
+  <rect x="610" y="615" width="260" height="74" rx="10" fill="#3A2A4F" stroke="#8B5CF6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="740" y="645" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Analytics Dashboard</text>
+  <text x="740" y="666" text-anchor="middle" font-size="10" fill="#9A8AB8">Traffic · Revenue · Profit KPIs</text>
+  <text x="740" y="680" text-anchor="middle" font-size="10" fill="#9A8AB8">Pageview tracking from storefront</text>
+
+  <rect x="70" y="710" width="240" height="64" rx="10" fill="#3A2A4F" stroke="#8B5CF6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="190" y="740" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Agent Inbox</text>
+  <text x="190" y="761" text-anchor="middle" font-size="10" fill="#9A8AB8">Support replies · Typing · Ratings</text>
+
+  <rect x="340" y="710" width="240" height="64" rx="10" fill="#3A2A4F" stroke="#8B5CF6" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="460" y="740" text-anchor="middle" font-size="13" font-weight="600" fill="#E0E0E0">Bracelet CRUD</text>
+  <text x="460" y="761" text-anchor="middle" font-size="10" fill="#9A8AB8">5-shot gallery · Image upload</text>
+
+  <!-- ═══════════ EXTERNAL SERVICES ═══════════ -->
+  <rect x="960" y="260" width="800" height="540" rx="16" fill="#2A2A2A" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="990" y="288" font-size="11" font-weight="700" fill="#888" letter-spacing="2">EXTERNAL SERVICES</text>
+
+  <!-- Stripe — full width -->
+  <rect x="990" y="310" width="740" height="100" rx="12" fill="#635BFF" fill-opacity="0.12" stroke="#635BFF" stroke-width="1.5"/>
+  <rect x="1010" y="330" width="56" height="24" rx="6" fill="#635BFF"/>
+  <text x="1038" y="347" text-anchor="middle" font-size="11" font-weight="700" fill="#FFF">Stripe</text>
+  <text x="1160" y="347" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Payment Processing</text>
+  <text x="1160" y="370" text-anchor="middle" font-size="10" fill="#777">Hosted checkout · Webhook for order creation</text>
+  <text x="1160" y="390" text-anchor="middle" font-size="10" fill="#777">Multi-currency (charges in display currency)</text>
+  <text x="1530" y="347" text-anchor="middle" font-size="13" fill="#A5A0FF">Card · Alipay · WeChat Pay</text>
+  <text x="1530" y="370" text-anchor="middle" font-size="10" fill="#777">Stripe Checkout Session</text>
+  <text x="1530" y="390" text-anchor="middle" font-size="10" fill="#777">Signature-verified webhooks</text>
+
+  <!-- Resend — full width -->
+  <rect x="990" y="430" width="740" height="100" rx="12" fill="#EC4899" fill-opacity="0.1" stroke="#EC4899" stroke-width="1.5"/>
+  <rect x="1010" y="450" width="64" height="24" rx="6" fill="#EC4899"/>
+  <text x="1042" y="467" text-anchor="middle" font-size="11" font-weight="700" fill="#FFF">Resend</text>
+  <text x="1160" y="467" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Transactional Email</text>
+  <text x="1160" y="490" text-anchor="middle" font-size="10" fill="#777">Order confirmation · Welcome email</text>
+  <text x="1160" y="510" text-anchor="middle" font-size="10" fill="#777">Login OTP codes</text>
+  <text x="1530" y="467" text-anchor="middle" font-size="13" fill="#D88AB8">Verified domain</text>
+  <text x="1530" y="490" text-anchor="middle" font-size="10" fill="#777">khora-studio.com</text>
+  <text x="1530" y="510" text-anchor="middle" font-size="10" fill="#777">Graceful degradation without key</text>
+
+  <!-- Turso — full width -->
+  <rect x="990" y="550" width="740" height="100" rx="12" fill="#4FF8D2" fill-opacity="0.1" stroke="#4FF8D2" stroke-width="1.5"/>
+  <rect x="1010" y="570" width="56" height="24" rx="6" fill="#4FF8D2"/>
+  <text x="1038" y="587" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a1a">Turso</text>
+  <text x="1160" y="587" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Edge Database</text>
+  <text x="1160" y="610" text-anchor="middle" font-size="10" fill="#777">Hosted libSQL (SQLite) · Prisma ORM</text>
+  <text x="1160" y="630" text-anchor="middle" font-size="10" fill="#777">Shared DB: both apps read/write</text>
+  <text x="1530" y="587" text-anchor="middle" font-size="13" fill="#7AD8B8">11 data models</text>
+  <text x="1530" y="610" text-anchor="middle" font-size="10" fill="#777">Edge-replicated (ap-northeast-1)</text>
+  <text x="1530" y="630" text-anchor="middle" font-size="10" fill="#777">Local SQLite for development</text>
+
+  <!-- Vercel + Frankfurter — side by side, full width -->
+  <rect x="990" y="670" width="360" height="100" rx="12" fill="#333" stroke="#555" stroke-width="1"/>
+  <text x="1170" y="705" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Vercel</text>
+  <text x="1170" y="728" text-anchor="middle" font-size="10" fill="#888">Hosting · Serverless · Edge · CDN</text>
+  <text x="1170" y="748" text-anchor="middle" font-size="10" fill="#888">Both apps deployed as Vercel projects</text>
+
+  <rect x="1370" y="670" width="360" height="100" rx="12" fill="#333" stroke="#555" stroke-width="1"/>
+  <text x="1550" y="705" text-anchor="middle" font-size="14" font-weight="600" fill="#E0E0E0">Frankfurter</text>
+  <text x="1550" y="728" text-anchor="middle" font-size="10" fill="#888">Live FX rates · Free · No API key</text>
+  <text x="1550" y="748" text-anchor="middle" font-size="10" fill="#888">12h client-side cache with static fallback</text>
+
+  <!-- ═══════════ DATA MODELS ═══════════ -->
+  <rect x="960" y="830" width="800" height="60" rx="12" fill="#4FF8D2" fill-opacity="0.06" stroke="#4FF8D2" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="990" y="855" font-size="10" font-weight="700" fill="#4FF8D2" letter-spacing="1">DATA MODELS</text>
+  <text x="990" y="878" font-size="10" fill="#7AD8B8">Stone · SKU · Bracelet · Order · OrderItem · Customer · LoginCode · SupportConversation · SupportMessage · PageView · StockMovement</text>
+
+  <!-- ═══════════ TECH STACK ═══════════ -->
+  <rect x="40" y="830" width="860" height="60" rx="12" fill="#222" stroke="#3A3A3A" stroke-width="1"/>
+  <text x="70" y="855" font-size="11" font-weight="700" fill="#888" letter-spacing="1">TECH STACK</text>
+  <text x="70" y="878" font-size="11" fill="#999">Next.js 15 · React 19 · TypeScript · Tailwind v4 · Framer Motion · Prisma 7</text>
+  <text x="680" y="878" font-size="11" fill="#555">100% vibe-coded with Claude Code</text>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <text x="900" y="970" text-anchor="middle" font-size="11" fill="#444">khora-studio.com · khora-inventory.vercel.app</text>
+
+</svg>
