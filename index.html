@@ -1310,25 +1310,19 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
   }
 
-  var sharedX = (function() {
-    var rng = mulberry32(42);
-    var xs = [];
-    for (var i = 0; i < 65; i++) {
-      var x = -0.1 + boxMuller(rng) * 0.13 + 0.12;
-      xs.push(Math.max(-0.15, Math.min(0.40, x)));
-    }
-    return xs;
-  })();
-
   function genPoints(model, seed) {
     var rng = mulberry32(seed);
     var pts = [];
-    var residStd = 0.13 * Math.sqrt(Math.max(0, 1 - model.r2));
-    for (var i = 0; i < sharedX.length; i++) {
-      var x = sharedX[i];
+    var nPts = 65;
+    var xStd = 0.13;
+    var residStd = xStd * Math.sqrt(Math.max(0, 1 - model.r2));
+    for (var i = 0; i < nPts; i++) {
+      var x = -0.1 + boxMuller(rng) * xStd + 0.12;
+      x = Math.max(-0.15, Math.min(0.40, x));
       var noise = boxMuller(rng) * residStd;
       if (model.r2 < 0.3) noise += (0.08 - x) * 0.3;
-      pts.push({ x: x, y: x + noise });
+      var y = x + noise;
+      pts.push({ x: x, y: y });
     }
     return pts;
   }
