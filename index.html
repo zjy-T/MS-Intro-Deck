@@ -1313,16 +1313,16 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
   function genPoints(model, seed) {
     var rng = mulberry32(seed);
     var pts = [];
-    var nTrain = 50, nVal = 15;
+    var nPts = 65;
     var xStd = 0.13;
     var residStd = xStd * Math.sqrt(Math.max(0, 1 - model.r2));
-    for (var i = 0; i < nTrain + nVal; i++) {
+    for (var i = 0; i < nPts; i++) {
       var x = -0.1 + boxMuller(rng) * xStd + 0.12;
       x = Math.max(-0.15, Math.min(0.40, x));
       var noise = boxMuller(rng) * residStd;
       if (model.r2 < 0.3) noise += (0.08 - x) * 0.3;
       var y = x + noise;
-      pts.push({ x: x, y: y, isVal: i >= nTrain });
+      pts.push({ x: x, y: y });
     }
     return pts;
   }
@@ -1386,23 +1386,16 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
 
     // Points
     var pts = genPoints(m, 42 + idx * 137);
-    var trainPts = pts.filter(function(p){ return !p.isVal; });
-    var valPts = pts.filter(function(p){ return p.isVal; });
 
-    function drawDots(arr, color, alpha) {
-      ctx.fillStyle = color;
-      ctx.globalAlpha = alpha;
-      arr.forEach(function(p) {
+    if (!animated) {
+      ctx.fillStyle = blue;
+      ctx.globalAlpha = 0.6;
+      pts.forEach(function(p) {
         ctx.beginPath();
         ctx.arc(sx(p.x), sy(p.y), 3.5 * dpr, 0, Math.PI * 2);
         ctx.fill();
       });
       ctx.globalAlpha = 1;
-    }
-
-    if (!animated) {
-      drawDots(trainPts, blue, 0.55);
-      drawDots(valPts, copper, 0.8);
     }
 
     // Model name
@@ -1451,21 +1444,7 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
     }
   }
 
-  // Legend at top-right
-  function drawLegend() {
-    var lx = W - 180 * dpr, ly = 4 * dpr;
-    ctx.font = (9 * dpr) + 'px "DM Sans"';
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = blue; ctx.globalAlpha = 0.55;
-    ctx.beginPath(); ctx.arc(lx, ly + 6 * dpr, 4 * dpr, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 1; ctx.fillStyle = '#555';
-    ctx.fillText('Training', lx + 8 * dpr, ly + 6 * dpr);
-    ctx.fillStyle = copper; ctx.globalAlpha = 0.8;
-    ctx.beginPath(); ctx.arc(lx + 70 * dpr, ly + 6 * dpr, 4 * dpr, 0, Math.PI * 2); ctx.fill();
-    ctx.globalAlpha = 1; ctx.fillStyle = '#555';
-    ctx.fillText('Validation', lx + 78 * dpr, ly + 6 * dpr);
-  }
+  function drawLegend() {}
 
   function drawAll() {
     ctx.clearRect(0, 0, W, H);
@@ -1482,8 +1461,6 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
       (function(idx) {
         var m = models[idx];
         var pts = genPoints(m, 42 + idx * 137);
-        var trainPts = pts.filter(function(p){ return !p.isVal; });
-        var valPts = pts.filter(function(p){ return p.isVal; });
         var col2 = idx % cols, row2 = Math.floor(idx / cols);
         var ox2 = gap + col2 * (cellW + gap);
         var oy2 = gap + row2 * (cellH + gap);
@@ -1494,12 +1471,10 @@ document.addEventListener('keydown', () => { const h=document.getElementById('ke
         var lo2 = -0.15, hi2 = 0.40;
         function sx2(v) { return plotX2 + (v - lo2) / (hi2 - lo2) * pw2; }
         function sy2(v) { return plotY2 + ph2 - (v - lo2) / (hi2 - lo2) * ph2; }
-        var allPts = trainPts.map(function(p){ return {x:p.x,y:p.y,c:blue,a:0.55}; })
-          .concat(valPts.map(function(p){ return {x:p.x,y:p.y,c:copper,a:0.8}; }));
-        allPts.forEach(function(p, pi) {
+        pts.forEach(function(p, pi) {
           setTimeout(function() {
-            ctx.fillStyle = p.c;
-            ctx.globalAlpha = p.a;
+            ctx.fillStyle = blue;
+            ctx.globalAlpha = 0.6;
             ctx.beginPath();
             ctx.arc(sx2(p.x), sy2(p.y), 3.5 * dpr, 0, Math.PI * 2);
             ctx.fill();
